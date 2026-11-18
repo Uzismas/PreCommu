@@ -51,7 +51,7 @@ th,td{padding:10px 10px;text-align:left;vertical-align:top;border-bottom:1px sol
 th{font-size:14px;color:var(--mut);font-weight:600;background:#faf9f6}
 .tbl{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:auto;margin:16px 0}
 .tbl tr:last-child td{border-bottom:0}
-code{font-family:"IBM Plex Mono",monospace;font-size:.86em;background:var(--code);padding:1px 6px;border-radius:5px;color:#2b3640;word-break:break-word}
+code{font-family:"IBM Plex Mono",monospace;font-size:.86em;background:var(--code);padding:2px 7px;border-radius:5px;color:#2b3640;word-break:break-word}
 pre{font-family:"IBM Plex Mono",monospace;background:#1f262d;color:#e8ecef;border-radius:12px;padding:16px 18px;overflow:auto;font-size:14.5px;line-height:1.65}
 .steps{list-style:none;padding:0;margin:16px 0;counter-reset:st}
 .steps>li{position:relative;padding:4px 0 18px 56px;max-width:820px}
@@ -125,8 +125,8 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 1 -->
 <section id="start">
-  <p class="eyebrow">โครงงานคอมพิวเตอร์ประเภทซอฟต์แวร์ · นวมินทราชินูทิศ สวนกุหลาบวิทยาลัย ปทุมธานี</p>
   <h1>Eyezheimer</h1>
+  <p class="mut" style="margin:0 0 8px">โครงงานคอมพิวเตอร์ประเภทซอฟต์แวร์ · โรงเรียนนวมินทราชินูทิศ สวนกุหลาบวิทยาลัย ปทุมธานี</p>
   <p class="lead">ซอฟต์แวร์ AI วิเคราะห์ภาพจอประสาทตา OCTA เพื่อคัดกรองโรคอัลไซเมอร์ระยะเริ่มต้น หน้านี้เน้น<b>ฝั่งโปรแกรมเมอร์</b> ว่าระบบทำงานยังไง ใช้อะไร และทำไมถึงเชื่อถือได้</p>
 
   <div class="split">
@@ -144,7 +144,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 2 -->
 <section id="script">
-  <p class="eyebrow">บทพูด</p>
   <h2>บทพูดของผม ตามสไลด์ (ฝั่งซอฟต์แวร์ ~3–4 นาที)</h2>
   <p class="mut">ส่วนที่<mark style="background:#fff0c2">ไฮไลต์</mark>คือคำที่ควรเน้นเสียง · ตัวอักษรสีส้มคือสิ่งที่ต้องทำ/ชี้</p>
 
@@ -203,7 +202,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 3 -->
 <section id="flow">
-  <p class="eyebrow">ตรรกะของระบบ</p>
   <h2>ระบบทำงานยังไง ตั้งแต่กดอัปโหลดจนได้รายงาน</h2>
   <p class="mut">ทุกขั้นอ้างอิงไฟล์จริงในโค้ด ถ้ากรรมการถามว่า "โค้ดส่วนนี้อยู่ไหน" ตอบจากชื่อไฟล์สีเทาได้</p>
   <ol class="steps">
@@ -224,7 +222,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 4 -->
 <section id="front">
-  <p class="eyebrow">Frontend</p>
   <h2>Frontend: Next.js + React + TypeScript</h2>
   <p>Next.js ทำ 2 หน้าที่ในโปรเจกต์นี้: <b>(1) หน้าเว็บ</b> 11 เมนูที่แพทย์เห็น และ <b>(2) API routes</b> ที่รันบนเซิร์ฟเวอร์ ทำหน้าที่เป็น "ประตูหน้า" คอยตรวจสิทธิ์ ตรวจไฟล์ เซ็นผล และเก็บ log ก่อนคุยกับ Backend Python</p>
   <div class="tbl"><table>
@@ -257,7 +254,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 5 -->
 <section id="back">
-  <p class="eyebrow">Backend</p>
   <h2>Backend: FastAPI (Python)</h2>
   <p>Backend คือส่วนที่ "คิดเลข" ทั้งหมด รับภาพจาก Next.js แล้วทำ pipeline ทั้งหมดใน Python ด้วย NumPy, Pillow และ ONNX Runtime ไม่ต้องใช้ GPU รันใน Docker container</p>
   <div class="tbl"><table>
@@ -311,7 +307,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 6 -->
 <section id="ai">
-  <p class="eyebrow">AI</p>
   <h2>AI: U-Net แยกเส้นเลือด และอัลกอริทึมหา FAZ</h2>
   <h3>U-Net คืออะไร</h3>
   <p>โครงข่ายประสาทเทียมแบบ CNN รูปตัว U ฝั่งซ้าย (encoder) ย่อภาพทีละขั้นเพื่อเข้าใจ "บริบท" ฝั่งขวา (decoder) ขยายกลับเพื่อบอก "ตำแหน่งละเอียด" และมี <b>skip connection</b> ส่งรายละเอียดจากซ้ายข้ามไปขวาโดยตรง เส้นเลือดฝอยเล็กๆ จึงไม่หายระหว่างย่อภาพ ผลคือคำตอบ<b>ทีละพิกเซล</b>ว่าเป็นเส้นเลือดหรือไม่</p>
@@ -350,7 +345,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 7 -->
 <section id="math">
-  <p class="eyebrow">สูตร</p>
   <h2>ดัชนี Alzheimer และ % ความเสี่ยงตามอายุ</h2>
   <p><b>ค่าอ้างอิงจากงานวิจัย:</b> FAZ ชั้นผิวของคนปกติ = <b>0.275 ± 0.10 mm²</b> (O'Bryhim et al., JAMA Ophthalmology 2018) · ผู้ป่วยอัลไซเมอร์มี FAZ ใหญ่กว่าเฉลี่ย <b>0.54 SD</b> (meta-analysis, Frontiers in Aging Neuroscience 2022)</p>
 <pre>ขั้น 1  z  = (FAZ − 0.275) / 0.10              จำกัดไว้ −3 ถึง 3
@@ -382,7 +376,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 8 -->
 <section id="sec">
-  <p class="eyebrow">ความปลอดภัย</p>
   <h2>ความปลอดภัยของระบบ</h2>
   <div class="tbl"><table>
     <tr><th>ภัย</th><th>วิธีป้องกันในระบบ</th></tr>
@@ -401,7 +394,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 9 -->
 <section id="stack">
-  <p class="eyebrow">เทคโนโลยี</p>
   <h2>เทคโนโลยีที่ใช้ มาจากไหน และเชื่อถือได้แค่ไหน</h2>
   <p class="mut">ถ้ากรรมการถามว่า "ทำไมเชื่อถือได้" ตอบได้ 3 แบบ: <b>ใครสร้าง/ดูแล</b> · <b>มาตรฐานหรืองานวิจัยรองรับ</b> · <b>ใครใช้ในงานจริง</b></p>
 
@@ -432,7 +424,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 10 -->
 <section id="numbers">
-  <p class="eyebrow">ตัวเลข</p>
   <h2>ตัวเลขที่ต้องจำ</h2>
   <h3>ฝั่งซอฟต์แวร์และโมเดล (ของผม)</h3>
   <div class="stats">
@@ -472,7 +463,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 11 -->
 <section id="qa">
-  <p class="eyebrow">ซ้อมตอบ</p>
   <h2>คำถามที่กรรมการน่าจะถาม</h2>
   <p class="mut"><span class="pill">ผมตอบ</span> คำถามซอฟต์แวร์ · <span class="pill f">เพื่อนตอบ</span> คำถาม OCTA/การแพทย์ (ผมควรรู้คำตอบไว้ด้วย)</p>
   <div id="qa-tools">
@@ -492,7 +482,6 @@ details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
 
 <!-- 12 -->
 <section id="weak">
-  <p class="eyebrow">เตรียมรับมือ</p>
   <h2>จุดอ่อนที่อาจโดนจี้ และวิธีตอบ</h2>
   <div class="note bad"><b>"AI ทำนายอัลไซเมอร์ได้แม่นแค่ไหน?"</b>ห้ามตอบ 87.8% (นั่นคือการหาเส้นเลือดระดับพิกเซล) ตอบว่า: "ส่วนที่เป็น AI คือการแยกเส้นเลือด ได้ AUC 0.908 ส่วนความเสี่ยงคำนวณจาก FAZ เทียบค่างานวิจัย เรายังไม่มีข้อมูลผู้ป่วยที่รู้ผลวินิจฉัย จึงยังไม่ได้วัดความแม่นในการทำนายโรค ซึ่งเป็นขั้นต่อไปครับ"</div>
   <div class="note bad"><b>"ทดสอบแค่ 9 คน น้อยไปไหม?"</b>ยอมรับว่าน้อย ROSE เป็นชุดข้อมูลที่ผู้เชี่ยวชาญวาดเส้นเลือดทีละพิกเซล ซึ่งหายาก เราใช้ split มาตรฐานของผู้สร้างชุดข้อมูลและแยกรายคนกันข้อมูลรั่ว แต่ละภาพมีหลายหมื่นพิกเซลให้วัด แต่ต้องเพิ่มข้อมูลแน่นอน</div>
