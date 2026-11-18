@@ -3,437 +3,588 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eyezheimer — สรุปเตรียมนำเสนอ</title>
+<title>Eyezheimer — คู่มือนำเสนอฝั่งซอฟต์แวร์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0f1720;--card:#16212d;--line:#243344;--tx:#e6edf3;--mut:#a9b8c7;--acc:#4fd1c5;--acc2:#f6ad55;--bad:#fc8181;--ok:#68d391}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:"IBM Plex Sans Thai","Sarabun","Noto Sans Thai",system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.75;font-size:17px}
-  nav{position:sticky;top:0;z-index:5;background:#0b1118ee;backdrop-filter:blur(6px);border-bottom:1px solid var(--line);display:flex;gap:4px;flex-wrap:wrap;padding:8px 16px}
-  nav a{color:var(--mut);text-decoration:none;padding:4px 10px;border-radius:6px;font-size:15px}
-  nav a:hover{background:var(--card);color:var(--tx)}
-  main{max-width:1000px;margin:auto;padding:24px 18px 80px}
-  h1{font-size:34px;margin:8px 0 0}
-  h2{font-size:26px;margin:56px 0 12px;padding-top:8px;border-top:1px solid var(--line);color:var(--acc)}
-  h3{font-size:20px;margin:26px 0 8px}
-  .sub{color:var(--mut)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-  .stat b{display:block;font-size:24px;color:var(--acc2)}
-  .stat span{font-size:14px;color:var(--mut)}
-  table{width:100%;border-collapse:collapse;font-size:15.5px}
-  th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
-  th{color:var(--mut);font-weight:600}
-  code,.mono{font-family:Consolas,"Cascadia Code",monospace;background:#0b1118;padding:1px 6px;border-radius:4px;font-size:14.5px;color:#9ae6b4}
-  pre{background:#0b1118;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;font-size:14px;line-height:1.55}
-  .warn{border-color:#f6ad5566;background:#f6ad550d}
-  .danger{border-color:#fc818166;background:#fc81810d}
-  .good{border-color:#68d39166;background:#68d3910d}
-  .tag{display:inline-block;font-size:12.5px;padding:1px 8px;border-radius:99px;background:#243344;color:var(--mut);margin-right:6px}
-  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-  .flow div{background:#0b1118;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px}
-  .flow i{color:var(--mut);font-style:normal}
-  .script p{margin:6px 0}
-  .script .t{color:var(--acc2);font-weight:700;font-size:14px}
-  .script .cue{color:var(--mut);font-style:italic;font-size:14.5px}
-  #qa-tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;align-items:center}
-  #qa-tools input{flex:1;min-width:200px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:#0b1118;color:var(--tx);font:inherit}
-  #qa-tools button{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--tx);font:inherit;font-size:14px;cursor:pointer}
-  #qa-tools button.on{background:var(--acc);color:#0b1118;border-color:var(--acc)}
-  details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:0 16px}
-  summary{cursor:pointer;padding:12px 0;font-weight:600;list-style:none}
-  summary::-webkit-details-marker{display:none}
-  summary .n{color:var(--acc);margin-right:8px}
-  details[open] summary{border-bottom:1px solid var(--line)}
-  details .a{padding:10px 0 14px}
-  details .tip{color:var(--acc2);font-size:15px}
-  @media print{nav,#qa-tools{display:none}details{break-inside:avoid}body,.card,.stat,details,pre,code,.flow div{background:#fff!important;color:#000!important}h2,.stat b,.tag,.sub,th{color:#000!important}}
+:root{
+  --bg:#f6f5f1; --paper:#ffffff; --ink:#1c232b; --ink2:#3d4752; --mut:#5f6b77; --line:#e3e0d8;
+  --acc:#0f6e66; --acc-soft:#e3f2ef; --amb:#9a5b00; --amb-soft:#fdf1dc; --red:#a8322d; --red-soft:#fbe9e7;
+  --grn:#2f6b2f; --grn-soft:#e8f3e3; --code:#f1efe9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Thai",system-ui,sans-serif;font-size:18px;line-height:1.85}
+a{color:var(--acc)}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);max-width:1240px;margin:auto;gap:40px;padding:0 24px}
+aside{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 0}
+aside .brand{font-weight:700;font-size:20px;letter-spacing:-.01em}
+aside .brand small{display:block;font-weight:400;color:var(--mut);font-size:14px}
+aside ol{list-style:none;padding:0;margin:22px 0 0;counter-reset:s}
+aside li a{display:flex;gap:10px;padding:7px 12px;border-radius:8px;color:var(--ink2);text-decoration:none;font-size:15.5px;line-height:1.4}
+aside li a::before{counter-increment:s;content:counter(s);color:var(--mut);font-family:"IBM Plex Mono";font-size:13px;min-width:16px;padding-top:2px}
+aside li a:hover,aside li a.on{background:var(--paper);color:var(--acc);box-shadow:0 0 0 1px var(--line)}
+main{padding:36px 0 120px;min-width:0}
+section{margin-bottom:72px}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0 0 6px}
+h1{font-size:44px;line-height:1.2;margin:0 0 10px;letter-spacing:-.02em}
+h2{font-size:30px;line-height:1.3;margin:0 0 8px;letter-spacing:-.01em}
+h3{font-size:21px;margin:34px 0 8px}
+h4{font-size:18px;margin:22px 0 4px}
+.lead{font-size:20px;color:var(--ink2);max-width:720px}
+.mut{color:var(--mut)}
+p,li{max-width:760px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:16px 0}
+.note{border-radius:12px;padding:14px 18px;margin:16px 0;max-width:800px}
+.note.tip{background:var(--acc-soft)} .note.warn{background:var(--amb-soft)} .note.bad{background:var(--red-soft)} .note.ok{background:var(--grn-soft)}
+.note b:first-child{display:block;margin-bottom:2px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.split .card{margin:0}
+.who{font-size:14px;font-weight:600;color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:14px 0}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.stat b{display:block;font-size:26px;line-height:1.3;color:var(--acc);font-weight:700}
+.stat span{font-size:14.5px;color:var(--mut);line-height:1.5;display:block}
+table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.6}
+th,td{padding:10px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--mut);font-weight:600;background:#faf9f6}
+.tbl{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:auto;margin:16px 0}
+.tbl tr:last-child td{border-bottom:0}
+code{font-family:"IBM Plex Mono",monospace;font-size:.86em;background:var(--code);padding:1px 6px;border-radius:5px;color:#2b3640;word-break:break-word}
+pre{font-family:"IBM Plex Mono",monospace;background:#1f262d;color:#e8ecef;border-radius:12px;padding:16px 18px;overflow:auto;font-size:14.5px;line-height:1.65}
+.steps{list-style:none;padding:0;margin:16px 0;counter-reset:st}
+.steps>li{position:relative;padding:4px 0 18px 56px;max-width:820px}
+.steps>li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:2px;width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}
+.steps>li::after{content:"";position:absolute;left:17px;top:42px;bottom:2px;width:2px;background:var(--line)}
+.steps>li:last-child::after{display:none}
+.steps b.t{display:block;font-size:18.5px}
+.where{font-size:14px;color:var(--mut)}
+.slide{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin:18px 0;overflow:hidden}
+.slide header{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;padding:14px 22px;background:#faf9f6;border-bottom:1px solid var(--line)}
+.slide header b{font-size:18px}
+.slide header span{font-size:14.5px;color:var(--mut)}
+.slide .body{padding:6px 22px 16px}
+.say{font-size:19px;line-height:1.95;color:var(--ink)}
+.say mark{background:#fff0c2;color:inherit;padding:0 3px;border-radius:3px}
+.cue{font-size:15px;color:var(--amb);font-weight:500}
+.pill{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:99px;background:var(--acc-soft);color:var(--acc);margin-right:6px;vertical-align:middle}
+.pill.f{background:var(--amb-soft);color:var(--amb)}
+.tech{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.tech .card{margin:0}
+.tech h4{margin:0 0 4px;font-size:19px}
+.tech dl{margin:6px 0 0;font-size:15.5px;line-height:1.65}
+.tech dt{font-weight:600;color:var(--mut);font-size:13.5px;margin-top:8px}
+.tech dd{margin:0}
+#qa-tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2}
+#qa-tools input{flex:1 1 260px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:16px;color:var(--ink)}
+#qa-tools button{padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:14.5px;cursor:pointer;color:var(--ink2)}
+#qa-tools button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+details{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:8px 0}
+summary{cursor:pointer;padding:13px 18px;font-weight:600;list-style:none;display:flex;gap:10px;line-height:1.55}
+summary::-webkit-details-marker{display:none}
+summary .n{color:var(--mut);font-family:"IBM Plex Mono";font-size:14px;min-width:26px;padding-top:3px}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .a{padding:12px 18px 16px 54px;color:var(--ink2)}
+details .hint{margin-top:8px;font-size:15.5px;color:var(--amb)}
+.mobilenav{display:none}
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr;gap:0;padding:0 16px}
+  aside{display:none}
+  .mobilenav{display:flex;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 16px;border-bottom:1px solid var(--line)}
+  .mobilenav a{white-space:nowrap;font-size:14.5px;padding:5px 12px;border-radius:99px;background:var(--paper);border:1px solid var(--line);text-decoration:none;color:var(--ink2)}
+  h1{font-size:34px} .split{grid-template-columns:1fr} #qa-tools{top:52px}
+}
+@media print{aside,.mobilenav,#qa-tools{display:none}.layout{display:block}details{break-inside:avoid}body{font-size:14px}}
 </style>
 </head>
 <body>
-<nav>
-  <a href="#top">ภาพรวม</a><a href="#numbers">ตัวเลขต้องจำ</a><a href="#boards">สรุป 6 บอร์ด</a>
-  <a href="#tech">เจาะลึกเทคนิค</a><a href="#math">สูตร FAZ/ความเสี่ยง</a><a href="#arch">สถาปัตยกรรม</a>
-  <a href="#script">บทพูด</a><a href="#qa">56 คำถาม</a><a href="#weak">จุดอ่อน & วิธีตอบ</a>
+<nav class="mobilenav" aria-label="สารบัญ">
+  <a href="#start">เริ่ม</a><a href="#script">บทพูด</a><a href="#flow">ระบบทำงาน</a><a href="#front">Frontend</a><a href="#back">Backend</a><a href="#ai">AI/FAZ</a><a href="#math">สูตร</a><a href="#sec">ความปลอดภัย</a><a href="#stack">เทคโนโลยี</a><a href="#numbers">ตัวเลข</a><a href="#qa">คำถาม</a><a href="#weak">จุดอ่อน</a>
 </nav>
+<div class="layout">
+<aside aria-label="สารบัญ">
+  <div class="brand">Eyezheimer<small>คู่มือนำเสนอฝั่งซอฟต์แวร์</small></div>
+  <ol>
+    <li><a href="#start">เริ่มที่นี่: แบ่งหน้าที่</a></li>
+    <li><a href="#script">บทพูดของผม (ตามสไลด์)</a></li>
+    <li><a href="#flow">ระบบทำงานยังไง ตั้งแต่ต้นจนจบ</a></li>
+    <li><a href="#front">Frontend: Next.js</a></li>
+    <li><a href="#back">Backend: FastAPI</a></li>
+    <li><a href="#ai">AI และการหา FAZ</a></li>
+    <li><a href="#math">สูตรดัชนี / ความเสี่ยง</a></li>
+    <li><a href="#sec">ความปลอดภัยของระบบ</a></li>
+    <li><a href="#stack">เทคโนโลยี มาจากไหน เชื่อถือได้แค่ไหน</a></li>
+    <li><a href="#numbers">ตัวเลขที่ต้องจำ</a></li>
+    <li><a href="#qa">คำถามที่กรรมการน่าจะถาม</a></li>
+    <li><a href="#weak">จุดอ่อน และวิธีตอบ</a></li>
+  </ol>
+</aside>
+
 <main>
 
-<section id="top">
-  <span class="tag">โครงงานคอมพิวเตอร์ประเภทซอฟต์แวร์</span><span class="tag">โรงเรียนนวมินทราชินูทิศ สวนกุหลาบวิทยาลัย ปทุมธานี</span>
+<!-- 1 -->
+<section id="start">
+  <p class="eyebrow">โครงงานคอมพิวเตอร์ประเภทซอฟต์แวร์ · นวมินทราชินูทิศ สวนกุหลาบวิทยาลัย ปทุมธานี</p>
   <h1>Eyezheimer</h1>
-  <p class="sub">ซอฟต์แวร์ AI วิเคราะห์ภาพจอประสาทตา OCTA เพื่อคัดกรองโรคอัลไซเมอร์ระยะเริ่มต้น · “คัดกรองวันนี้ เพื่ออนาคตที่ดีกว่า”</p>
+  <p class="lead">ซอฟต์แวร์ AI วิเคราะห์ภาพจอประสาทตา OCTA เพื่อคัดกรองโรคอัลไซเมอร์ระยะเริ่มต้น หน้านี้เน้น<b>ฝั่งโปรแกรมเมอร์</b> ว่าระบบทำงานยังไง ใช้อะไร และทำไมถึงเชื่อถือได้</p>
+
+  <div class="split">
+    <div class="card"><div class="who">เพื่อนพูด</div><b>OCTA และการแพทย์</b><br>ที่มาของปัญหา, อัลไซเมอร์, จอตา = หน้าต่างสู่สมอง, OCTA คืออะไร, FAZ คืออะไร, เทียบ PET scan / เจาะไขสันหลัง <span class="mut">(บอร์ด 1–2)</span></div>
+    <div class="card"><div class="who">ผมพูด</div><b>ซอฟต์แวร์และระบบ</b><br>เว็บแอป 11 เมนู, ขั้นตอนแพทย์ใช้งาน, สถาปัตยกรรม, AI pipeline, ความปลอดภัย, ผลทดสอบโมเดล, ต่อยอด <span class="mut">(บอร์ด 3–4)</span></div>
+  </div>
+
+  <div class="note warn"><b>ประโยคที่ต้องพูดให้ชัดเสมอ</b>ระบบนี้ใช้<b>คัดกรอง</b> ไม่ได้<b>วินิจฉัย</b> · AI ที่เทรนจริงทำหน้าที่<b>แยกเส้นเลือด</b> · ดัชนี Alzheimer คำนวณจากค่าสถิติในงานวิจัยที่ตีพิมพ์แล้ว ยังไม่ได้ทดสอบกับผู้ป่วยที่รู้ผลวินิจฉัย · <b>แพทย์เป็นคนอนุมัติผลเสมอ</b></div>
+
   <div class="card">
-    <b>สรุปในประโยคเดียว:</b> เว็บแอปสำหรับแพทย์ อัปโหลดภาพ OCTA ขนาด 3×3 มม. แล้ว U-Net จะแยกเส้นเลือดฝอยทีละพิกเซล ระบบหาพื้นที่ FAZ (บริเวณกลางจอตาที่ไม่มีเส้นเลือด) เป็น mm² แล้วเทียบกับค่าจากงานวิจัยออกมาเป็น<b>ดัชนี Alzheimer (0–1)</b> และ <b>% ความเสี่ยงตามอายุ</b> จากนั้นแพทย์ต้องตรวจและอนุมัติก่อนออกรายงาน PDF / DICOM
+    <b>อธิบายระบบใน 30 วินาที</b>
+    <p style="margin:6px 0 0">แพทย์ล็อกอินเข้าเว็บ (Next.js) แล้วอัปโหลดภาพ OCTA เว็บตรวจไฟล์ก่อน แล้วส่งต่อให้ Backend (FastAPI, Python) ซึ่งกรองภาพที่ไม่ใช่ OCTA หรือคุณภาพต่ำออก จากนั้นโมเดล <b>U-Net</b> (ไฟล์ ONNX) แยกเส้นเลือดทีละพิกเซล อัลกอริทึมของเราหา <b>FAZ</b> เป็น mm² แล้วแปลงเป็น<b>ดัชนี Alzheimer 0–1</b> และ <b>% ความเสี่ยงตามอายุ</b> ด้วยหลักของ Bayes ผลทุกชิ้นถูก<b>เซ็นด้วย HMAC-SHA256</b> กันการแก้ตัวเลข แพทย์ตรวจและอนุมัติก่อนออกรายงาน PDF/DICOM และทุกการกระทำถูกบันทึกใน audit log</p>
   </div>
-  <div class="card warn">
-    <b>ประโยคที่ต้องพูดให้ชัดทุกครั้ง:</b> ระบบนี้ใช้ <u>คัดกรอง</u> ไม่ได้ใช้ <u>วินิจฉัย</u> · AI ที่เทรนจริงทำหน้าที่ <u>แยกเส้นเลือด</u> ส่วนดัชนี Alzheimer คำนวณจากค่าสถิติในงานวิจัยที่ตีพิมพ์แล้ว ยังไม่ใช่ตัวจำแนกโรค (classifier) ที่ผ่านการทดสอบกับผู้ป่วยจริง
-  </div>
-  <p class="sub">คณะผู้จัดทำ: นายฐิติโชติ ทับแสง · นายปภังกร ตราชู · นายไชยพร เกรียงไกรวิทย์ — ครูที่ปรึกษา: นางวาสนา หงษ์ษา · นางณัชชา บุญประไพ</p>
 </section>
 
-<section id="numbers">
-<h2>ตัวเลขที่ต้องจำ (Cheat sheet)</h2>
-<h3>ฝั่งปัญหา (บอร์ด 1)</h3>
-<div class="grid">
-  <div class="stat"><b>2–3 ปี</b><span>กว่าจะได้รับการวินิจฉัย นับจากอาการแรก</span></div>
-  <div class="stat"><b>40–50%</b><span>เซลล์ประสาทส่วนสำคัญเสียไปแล้วตอนตรวจพบ</span></div>
-  <div class="stat"><b>฿96,000+</b><span>ค่า PET scan ต่อครั้ง (สูงสุด ฿161,000)</span></div>
-  <div class="stat"><b>40%</b><span>ผู้ป่วยปฏิเสธการตรวจ เพราะกลัวเข็ม/เจ็บตัว (เจาะน้ำไขสันหลัง)</span></div>
-  <div class="stat"><b>85%</b><span>ผู้มีภาวะสมองเสื่อมในประเทศรายได้ต่ำถึงปานกลาง ไม่ได้รับการวินิจฉัย</span></div>
-  <div class="stat"><b>15–20%</b><span>ผลอ่านภาพต่างกันระหว่างผู้เชี่ยวชาญ</span></div>
-</div>
-<h3>ฝั่งผลการทดสอบโมเดล (บอร์ด 3–4)</h3>
-<div class="grid">
-  <div class="stat"><b>ROSE-1 · 117 ภาพ</b><span>ชั้น SVC จาก 39 คน (Ma et al., 2021)</span></div>
-  <div class="stat"><b>30 : 9 คน</b><span>เทรน : ทดสอบ แยกเป็นรายคน ไม่มีคนซ้ำ</span></div>
-  <div class="stat"><b>87.8%</b><span>Accuracy หาเส้นเลือดถูก (ระดับพิกเซล)</span></div>
-  <div class="stat"><b>0.908</b><span>AUC แยกเส้นเลือดออกจากพื้นหลัง</span></div>
-  <div class="stat"><b>0.701</b><span>Dice เส้นเลือด (model card: 0.708)</span></div>
-  <div class="stat"><b>0.87</b><span>FAZ Dice ซ้อนทับกับที่ผู้เชี่ยวชาญวาด</span></div>
-  <div class="stat"><b>0.037 mm²</b><span>FAZ คลาดเคลื่อนเฉลี่ย</span></div>
-  <div class="stat"><b>r = 0.92</b><span>สหสัมพันธ์พื้นที่ FAZ กับผู้เชี่ยวชาญ</span></div>
-  <div class="stat"><b>45/45</b><span>ทำซ้ำได้ผลเดิม (5 ครั้ง × 9 ภาพ)</span></div>
-</div>
-<h3>ฝั่งระบบ / Data Insights / ประโยชน์</h3>
-<div class="grid">
-  <div class="stat"><b>11 เมนู</b><span>เว็บแอปครบวงจร</span></div>
-  <div class="stat"><b>≤ 8 MB</b><span>ขนาดไฟล์สูงสุด PNG/JPEG/TIFF/WebP</span></div>
-  <div class="stat"><b>คุณภาพ ≥ 45</b><span>เกณฑ์คะแนนคุณภาพภาพขั้นต่ำ</span></div>
-  <div class="stat"><b>1 / 6 / 2</b><span>FAZ Low / Moderate / High จาก 9 ภาพทดสอบ</span></div>
-  <div class="stat"><b>5.3%</b><span>ความเสี่ยงเฉลี่ย (สมมติอายุ 68)</span></div>
-  <div class="stat"><b>0.290 mm²</b><span>FAZ เฉลี่ยจาก 9 ภาพ (ค่าปกติอ้างอิง 0.275)</span></div>
-  <div class="stat"><b>~฿200</b><span>ต่อการสแกน OCTA</span></div>
-  <div class="stat"><b>~99.8%</b><span>ถูกกว่า PET scan (1 − 200/96,000)</span></div>
-  <div class="stat"><b>1–2 นาที</b><span>สแกน ไม่เจ็บ ไม่ฉีดสี</span></div>
-  <div class="stat"><b>+35–50%*</b><span>พบระยะเริ่มต้นมากขึ้น (*ตัวเลขคาดการณ์)</span></div>
-  <div class="stat"><b>−60–80%*</b><span>ลดเวลาอ่านภาพ (*ตัวเลขคาดการณ์)</span></div>
-</div>
-<div class="card warn">ตัวเลขประโยชน์ +35–50% และ −60–80% บนบอร์ดมีดอกจัน “ตัวเลขคาดการณ์” — ถ้ากรรมการถาม ให้ยอมรับตรงๆ ว่าเป็นการประมาณ ยังไม่ได้วัดจริงในโรงพยาบาล</div>
-</section>
-
-<section id="boards">
-<h2>สรุปทีละบอร์ด (อธิบายละเอียด)</h2>
-
-<h3>บอร์ด 1 — ที่มาและความสำคัญ / วัตถุประสงค์ / ขอบเขต / ประโยชน์</h3>
-<div class="card">
-<p><b>ปัญหา:</b> ไทยเข้าสู่สังคมผู้สูงอายุ อัลไซเมอร์เป็นสาเหตุหลักของภาวะสมองเสื่อม ตัวอย่างบนบอร์ดคือ “ป้าจีน 67 ปี” ลืมบ่อย ถามซ้ำ หลงทาง แต่คิดว่าแค่เหนื่อย กว่าจะพบแพทย์เซลล์ประสาทก็ถูกทำลายไปมากแล้ว</p>
-<p><b>วิธีตรวจเดิมมี 3 ปัญหา:</b> PET scan ราคาสูง · เจาะน้ำไขสันหลังทำให้ผู้ป่วยกลัว · แพทย์อ่านภาพด้วยตาใช้เวลานานและอ่านไม่ตรงกัน 15–20%</p>
-<p><b>วัตถุประสงค์ 3 ข้อ:</b> (1) พัฒนาซอฟต์แวร์ AI วิเคราะห์ภาพ OCTA วัดเส้นเลือดฝอยและ FAZ (2) ทำให้การคัดกรองเข้าถึงง่าย ไม่เจ็บ เร็ว ถูก (3) ช่วยแพทย์ตัดสินใจอย่างมั่นใจ แพทย์ตรวจก่อนออกผล และปกป้องข้อมูลผู้ป่วย</p>
-<p><b>ขอบเขต:</b> ผู้ใช้ = แพทย์/บุคลากรการแพทย์ · ข้อมูลเข้า = ภาพ OCTA 3×3 มม. (PNG, JPEG, TIFF) · ผลลัพธ์ = ดัชนี Alzheimer และ % ความเสี่ยง · เว็บแอป 11 เมนู · ความปลอดภัย = ล็อกอิน, บันทึก log, เซ็นผลด้วย HMAC · ข้อจำกัด = ใช้คัดกรอง ไม่ใช่วินิจฉัย</p>
-</div>
-
-<h3>บอร์ด 2 — ชื่อโครงงาน / ทฤษฎี / จุดเด่น / ขั้นตอนดำเนินงาน</h3>
-<div class="card">
-<p><b>ทฤษฎี 3 เรื่อง:</b></p>
-<ul>
-<li><b>อัลไซเมอร์:</b> โรคสมองเสื่อมที่พบบ่อยที่สุด เซลล์ประสาทถูกทำลายหลายปีก่อนแสดงอาการ ตรวจเร็วช่วยชะลอได้</li>
-<li><b>จอประสาทตา = หน้าต่างสู่สมอง:</b> จอประสาทตาเจริญมาจากเนื้อเยื่อเดียวกับสมอง (ส่วนหนึ่งของระบบประสาทส่วนกลาง) ผู้ป่วยอัลไซเมอร์มี <b>เส้นเลือดฝอยลดลง</b> และ <b>FAZ ใหญ่ขึ้น</b></li>
-<li><b>OCTA + AI:</b> OCTA (Optical Coherence Tomography Angiography) ถ่ายภาพเส้นเลือดฝอยใน 1–2 นาที ไม่ต้องฉีดสี ใช้ U-Net แยกเส้นเลือดทีละพิกเซลแล้ววัดพื้นที่ FAZ</li>
-</ul>
-<p>ภาพตัวอย่างบนบอร์ด: A อัลไซเมอร์ · B ภาวะ MCI · C คนปกติ (ที่มา Retina Today มี.ค. 2026)</p>
-<table>
-<tr><th></th><th>PET scan</th><th>เจาะน้ำไขสันหลัง</th><th>Eyezheimer</th></tr>
-<tr><td>ราคา</td><td>฿96,000–161,000</td><td>—</td><td>~฿200 ต่อสแกน</td></tr>
-<tr><td>ความเจ็บ</td><td>ฉีดสารเภสัชรังสี</td><td>ใช้เข็มเจาะหลัง ผู้ป่วยกลัว</td><td>ไม่เจ็บ ไม่ฉีดสี 1–2 นาที</td></tr>
-<tr><td>การเข้าถึง</td><td>เฉพาะ รพ.ใหญ่</td><td>แพทย์เฉพาะทาง</td><td>AI วัด FAZ และเส้นเลือดให้</td></tr>
-</table>
-<p><b>ขั้นตอน 6 ขั้น:</b> คัดเลือกหัวข้อ → ศึกษาค้นคว้า (งานวิจัย OCTA, AI การแพทย์) → ออกแบบระบบ (UI 11 เมนู, ฐานข้อมูล) → พัฒนาโปรแกรม (เว็บแอป + โมเดล AI) → ทดสอบ/ปรับปรุง (วัดความแม่นยำ) → เผยแพร่ (รายงาน, วิดีโอ, บอร์ด)</p>
-</div>
-
-<h3>บอร์ด 3 — ซอฟต์แวร์ (ฟีเจอร์)</h3>
-<div class="card">
-<p>เว็บแอปใช้ผ่านเบราว์เซอร์ได้ทันที <b>ไม่ต้องติดตั้ง</b> · <b>แพทย์อนุมัติผล</b> · <b>บันทึก log</b></p>
-<p><b>เมนู:</b> Dashboard · Task Manager · Upload Scan · Patients · Analysis · Reports · Data Insights · Model Performance · Data Management (+ Demo Preview, Settings — รวมเป็น 11)</p>
-<ul>
-<li><b>Module 01 Analysis (หัวใจของระบบ):</b> ค่าจากภาพเส้นเลือด (Vessel density, Perfusion, FAZ mm²) → ดัชนี Alzheimer 0–1 (FAZ ต่างจากคนปกติกี่ SD → Low/Moderate/High) → เทียบคนวัยเดียวกันเป็น % ความเสี่ยงตามอายุ (หลักของ Bayes) แสดงภาพต้นฉบับ → U-Net แยกเส้นเลือด → หา FAZ</li>
-<li><b>02 Dashboard:</b> หน้าแรกหลังล็อกอิน เห็นงานที่รอตรวจ ตรวจคุณภาพภาพ ดูแผนที่เส้นเลือด สถานะคิว (ผ่านคุณภาพ / รอตรวจ / อนุมัติแล้ว)</li>
-<li><b>03 Performance:</b> Accuracy 87.8% · AUC 0.908 · Dice 0.701 · FAZ Dice 0.87 · คลาดเฉลี่ย 0.037 mm² · ส่งภาพซ้ำ 45 ครั้งผลเหมือนเดิม</li>
-<li><b>04 Data:</b> บันทึกทุกเหตุการณ์ (ล็อกอิน วิเคราะห์ อนุมัติ ดาวน์โหลด) · ปุ่ม Export audit · แท็บแหล่งข้อมูล De-identification และ Consent</li>
-<li><b>05 Demo Preview:</b> หน้าตาระบบในอนาคตเมื่อมีโมเดลจำแนกโรค แยก Control/MCI/AD — <b>ทุกตัวเลขเป็นข้อมูลจำลอง</b> มีป้ายเตือน เปิด/ปิดได้ด้วยปุ่ม Demo data</li>
-</ul>
-<p><b>ขั้นตอนแพทย์ใช้งาน:</b> ล็อกอิน → อัปโหลดภาพ → AI วิเคราะห์ → แพทย์ตรวจ/บันทึกการตัดสินใจ → ออกรายงาน PDF · DICOM</p>
-</div>
-
-<h3>บอร์ด 4 — สถาปัตยกรรม / AI Pipeline / ผลการทดสอบ / สรุป</h3>
-<div class="card">
-<div class="flow"><div>ผู้ใช้ (แพทย์ / เบราว์เซอร์)</div><i>→</i><div>Front-end<br><span class="mono">Next.js · React</span></div><i>→</i><div>Back-end API<br><span class="mono">FastAPI (Python)</span></div><i>→</i><div>AI Model<br><span class="mono">PyTorch → ONNX</span></div><i>→</i><div>Database<br><span class="mono">Server memory</span></div></div>
-<p><b>Pipeline 6 ขั้น:</b> รับภาพ (≤8 MB) → คัดกรองภาพ (ปฏิเสธผิดชนิด/คุณภาพ &lt; 45) → U-Net แยกเส้นเลือดทีละพิกเซล → หา FAZ วัดเป็น mm² → คำนวณความหนาแน่น/ดัชนี (FAZ → z → LR → ดัชนี 0–1 → % ตามอายุ) → แสดงผล + รายงาน PDF/DICOM</p>
-<p><b>สรุปผล:</b> วิเคราะห์ OCTA ครบทุกขั้น หาเส้นเลือด AUC 0.908 หา FAZ ใกล้เคียงผู้เชี่ยวชาญ (r = 0.92) <b>สิ่งที่วัดคือการหาเส้นเลือด/FAZ ไม่ใช่การวินิจฉัยโรค</b> ร้อยละความเสี่ยงยังต้องทดสอบกับผู้ป่วยจริง</p>
-<p><b>ข้อเสนอแนะ/ต่อยอด:</b> ทดสอบกับผู้ป่วยที่รู้ผลวินิจฉัยจริง · เพิ่ม heatmap อธิบายเหตุผล AI · ลบข้อมูลระบุตัวตนอัตโนมัติ · เพิ่มข้อมูลคนไทยและเครื่องหลายรุ่น · ต่อยอดคัดกรอง MCI และพาร์กินสัน</p>
-</div>
-<p class="sub">บอร์ด 5–6 คือหลังคา: ตราโรงเรียน และโลโก้ “Eyezheimer — OCT AI for Alzheimer's Risk Assessment”</p>
-</section>
-
-<section id="tech">
-<h2>เจาะลึกเทคนิค (สิ่งที่โปรแกรมเมอร์ต้องตอบได้)</h2>
-<p class="sub">ข้อมูลส่วนนี้มาจากโค้ดจริงในโปรเจกต์: <code>backend/app/octa_pipeline.py</code>, <code>model_card.json</code>, <code>features/clinical-console/alzheimer-risk.ts</code>, <code>server/analysis-receipt.ts</code></p>
-
-<h3>1. รับไฟล์และตรวจความปลอดภัยของภาพ</h3>
-<div class="card">
-<ul>
-<li>ไฟล์ว่าง → ปฏิเสธ · ใหญ่กว่า <b>8 MB</b> → ปฏิเสธ · เล็กกว่า <b>64×64</b> พิกเซล → ปฏิเสธ · เกิน <b>16 ล้านพิกเซล</b> → ปฏิเสธ (กัน decompression bomb)</li>
-<li>ต้อง decode ได้จริงเป็น JPEG/PNG/WebP/TIFF และ<b>ชนิดที่ประกาศ (MIME) ต้องตรงกับที่ decode ได้</b> — กันการเปลี่ยนนามสกุลไฟล์หลอก</li>
-<li>ไม่รับภาพหลายเฟรม (เช่น TIFF หลายหน้า)</li>
-<li>แปลงเป็นภาพขาวดำด้วยสูตร luma ITU-R 601: <code>0.299R + 0.587G + 0.114B</code> หาร 255 · ภาพ 16 บิต หาร 65535 (ไม่ยืดคอนทราสต์รายภาพ เพื่อให้ผลคงที่)</li>
-</ul>
-</div>
-
-<h3>2. ด่านกรองภาพ 3 ชั้น (ก่อนเข้าโมเดล)</h3>
-<div class="card">
-<ol>
-<li><b>Modality gate (ชื่อไฟล์):</b> ถ้าชื่อไฟล์มีคำ เช่น skin, face, selfie, fundus → บล็อก · ภาพสีมากกว่า 12% → ผ่านแต่มีคำเตือน</li>
-<li><b>Content gate (สถิติภาพ):</b> คำนวณ 5–6 ค่าเพื่อจับภาพที่ “ไม่ใช่ OCTA ชัดๆ” เช่น
-  <ul>
-  <li><code>lag1</code> สหสัมพันธ์ของพิกเซลข้างเคียง &lt; 0.25 → เป็น noise ไม่มีเส้นเลือดต่อกัน</li>
-  <li><code>detail</code> (Laplacian) &lt; 0.10 → ภาพเรียบ ไม่มีรายละเอียดเส้นเลือด</li>
-  <li><code>skew</code> &lt; 0.20 → ไม่ใช่เส้นเลือดสว่างบนพื้นมืด (ภาพกลับสี)</li>
-  <li><code>extremes</code> &gt; 0.60 → ดำ/ขาวล้วน (เป็นกราฟิก)</li>
-  <li><code>flat</code> &gt; 0.35 → มีพื้นที่เรียบมาก (รูปถ่าย, screenshot)</li>
-  </ul>
-  ค่าเกณฑ์ตั้งจาก 39 ภาพ ROSE-O + ภาพที่ทำให้เบลอ/มืด/มี noise/บีบอัด JPEG/ย่อขนาด โดยเว้นระยะกว้าง</li>
-<li><b>Quality gate:</b> คะแนน = <code>42 + contrast×0.52 + sharpness×0.22 − artifact×0.35</code> (0–99) · บล็อกถ้า <b>&lt; 45</b> หรือ contrast &lt; 4 หรือพิกเซลมืดเกิน 92%</li>
-</ol>
-<p>ถ้าโมเดลโหลดไม่ได้ ระบบตอบ <code>analysis_status: unavailable</code> และ<b>ไม่แอบใช้วิธีสำรองแทน</b> (no silent fallback) — เพื่อไม่ให้แพทย์เข้าใจผิดว่าเป็นผลจาก AI</p>
-</div>
-
-<h3>3. U-Net แยกเส้นเลือด</h3>
-<div class="card">
-<ul>
-<li><b>U-Net</b> = CNN รูปตัว U: ฝั่ง encoder ย่อภาพเพื่อจับ “ภาพรวม/บริบท” ฝั่ง decoder ขยายกลับเพื่อระบุ “ตำแหน่งละเอียด” มี <b>skip connection</b> ส่งรายละเอียดจาก encoder ข้ามไป decoder ทำให้เส้นเลือดเล็กๆ ไม่หาย เหมาะกับงานภาพการแพทย์ที่ข้อมูลน้อย</li>
-<li>เทรนด้วย <b>PyTorch</b> แล้ว export เป็น <b>ONNX</b> (ไฟล์ ~7.4 MB) รันด้วย <b>ONNX Runtime บน CPU</b> — ไม่ต้องมี GPU ไม่ต้องติดตั้ง PyTorch บนเซิร์ฟเวอร์</li>
-<li>Input: ภาพขาวดำ ย่อเป็น <b>256×256</b> (bilinear) หาร 255 → tensor <code>[1,1,256,256] float32</code></li>
-<li>Output: logits → <b>sigmoid</b> → ความน่าจะเป็นแต่ละพิกเซล → threshold <b>0.5</b> → mask → ขยายกลับขนาดเดิมด้วย nearest-neighbour</li>
-<li>ตรวจ <b>SHA-256</b> ของไฟล์โมเดลให้ตรงกับ <code>model_card.json</code> ก่อนใช้งาน ถ้าไม่ตรง → สถานะ corrupt (กันโมเดลถูกสลับ/เสีย)</li>
-<li>Test Dice ใน model card = <b>0.708</b>, split ตาม ROSE-O test ที่เผยแพร่ (9 ภาพ)</li>
-</ul>
-</div>
-
-<h3>4. หา FAZ (ไม่ได้ใช้ AI — ใช้อัลกอริทึมภาพ)</h3>
-<div class="card">
-<ol>
-<li>ย่อภาพเป็นกริด <b>304×304</b> (ภาพ 3×3 มม. → 1 พิกเซล = 3/304 มม.)</li>
-<li>Box blur 5×5 (ใช้ integral image / cumsum ให้เร็ว)</li>
-<li>พิกเซล “มืด” = ค่าน้อยกว่า <b>0.40 × median</b> ของภาพ</li>
-<li>หาจุดที่มืดที่สุดในวงกลางรัศมี 15% ของภาพ เป็นจุดเริ่ม</li>
-<li><b>Flood fill (region growing) 4 ทิศ</b> กระจายเฉพาะพิกเซลมืดที่ต่อกัน → ได้ FAZ mask</li>
-<li>พื้นที่ = จำนวนพิกเซล × (3/304)² mm² · ถ้าได้น้อยกว่า 0.02 หรือมากกว่า 1.5 mm² ถือว่าหาไม่เจอ ไม่รายงานดัชนี</li>
-<li>วาดเส้นขอบด้วย <b>Moore-neighbour tracing</b> เป็น SVG path ซ้อนบนภาพ</li>
-</ol>
-<p>ค่าพารามิเตอร์ (0.40, blur 5×5) จูนจาก 30 ภาพเทรน แล้ววัดกับ 9 ภาพทดสอบ: <b>Dice 0.87, คลาด 0.037 mm², r 0.92</b></p>
-</div>
-
-<h3>5. ค่าอื่นที่รายงาน</h3>
-<div class="card">
-<ul>
-<li><b>Vessel density</b> = พิกเซลเส้นเลือด ÷ พิกเซลทั้งหมด × 100</li>
-<li><b>Perfusion density</b> = % ของภาพที่สว่างกว่า “noise floor” ของ FAZ (ค่าเฉลี่ย FAZ + 3 SD) — เพราะ FAZ ไม่มีเลือดไหล ความสว่างในนั้นจึงเป็น noise ของเครื่อง · ครอบคลุม 94% ของเส้นเลือดที่ผู้เชี่ยวชาญวาด และติด FAZ ไม่ถึง 2%</li>
-<li>ค่าเหล่านี้<b>เทียบกับตัวเลขของเครื่อง OCTA โดยตรงไม่ได้</b> เพราะหน่วย/วิธีวัดต่างกัน</li>
-</ul>
-</div>
-</section>
-
-<section id="math">
-<h2>สูตรดัชนี Alzheimer และ % ความเสี่ยง (ต้องอธิบายได้)</h2>
-<div class="card">
-<p><b>ค่าอ้างอิงจากงานวิจัย:</b> FAZ ชั้นผิว (superficial) ของคนปกติ = <b>0.275 ± 0.10 mm²</b> (O'Bryhim et al., JAMA Ophthalmology 2018) · ผู้ป่วยอัลไซเมอร์มี FAZ ใหญ่กว่าเฉลี่ย <b>0.54 SD</b> (SMD จาก meta-analysis, Frontiers in Aging Neuroscience 2022)</p>
-<pre>
-ขั้น 1  z  = (FAZ − 0.275) / 0.10          (จำกัดไว้ที่ −3 ถึง 3)
-ขั้น 2  LR = exp(0.54·z − 0.54²/2)          = อัตราส่วนความน่าจะเป็น (likelihood ratio)
-                                              ของกลุ่ม AD กับกลุ่มปกติ ที่ค่า z นี้
-ขั้น 3  ดัชนี Alzheimer = LR / (1 + LR)       (prior 50/50 → 0.5 คือไม่บอกอะไร)
-         Low &lt; 0.35 ≤ Moderate &lt; 0.65 ≤ High
-ขั้น 4  % ความเสี่ยงตามอายุ (Bayes):
-         odds_ก่อน = p_อายุ / (1 − p_อายุ)
-         odds_หลัง = odds_ก่อน × LR
-         risk     = odds_หลัง / (1 + odds_หลัง)
-</pre>
-<p><b>ทำไม LR เป็นสูตรนี้:</b> สมมติ z ของคนปกติ ~ Normal(0,1) และของ AD ~ Normal(0.54,1) (SD เท่ากัน) อัตราส่วนความหนาแน่น = exp(0.54z − 0.54²/2)</p>
-<table>
-<tr><th>กลุ่มอายุ</th><th>ความชุก (prior)</th><th>แหล่ง</th></tr>
-<tr><td>60–64</td><td>0.23%</td><td>Hendriks et al., JAMA Neurology 2021 × สัดส่วนอัลไซเมอร์</td></tr>
-<tr><td>65–74</td><td>5.0%</td><td rowspan="3">Alzheimer's Association 2024 (สหรัฐฯ)</td></tr>
-<tr><td>75–84</td><td>13.1%</td></tr>
-<tr><td>85+</td><td>33.3%</td></tr>
-</table>
-<p>อายุต่ำกว่า 60 → ไม่คำนวณ % (ไม่มีค่าอ้างอิง) · ไม่เอา vessel density มาบวก เพราะไม่มีค่าอ้างอิงในหน่วยเดียวกัน และซ้ำซ้อนกับ FAZ</p>
-</div>
-<h3>ตัวอย่างคำนวณ (ไว้ตอบสด)</h3>
-<div class="card">
-<table>
-<tr><th>FAZ</th><th>z</th><th>LR</th><th>ดัชนี</th><th>ระดับ</th><th>% เสี่ยง อายุ 68 (prior 5%)</th></tr>
-<tr><td>0.290 mm² (ค่าเฉลี่ย 9 ภาพ)</td><td>0.15</td><td>0.94</td><td>0.48</td><td>Moderate</td><td>≈ 4.7%</td></tr>
-<tr><td>0.500 mm²</td><td>2.25</td><td>2.91</td><td>0.74</td><td>High</td><td>≈ 13.3%</td></tr>
-<tr><td>0.150 mm²</td><td>−1.25</td><td>0.44</td><td>0.30</td><td>Low</td><td>≈ 2.3%</td></tr>
-</table>
-<p><b>จุดตัดระดับ:</b> FAZ &lt; ~0.19 mm² → Low · FAZ &gt; ~0.42 mm² → High · ระหว่างนั้น → Moderate</p>
-<p class="sub">หมายเหตุ: บอร์ดเขียน “เสี่ยงเฉลี่ย 5.3% (อายุ 68)” เป็นค่าเฉลี่ยของ % รายภาพทั้ง 9 ภาพ (ไม่ใช่ % ของ FAZ เฉลี่ย) จึงต่างจาก 4.7% เล็กน้อย — สังเกตว่าใกล้ prior 5% มาก แปลว่าภาพทดสอบส่วนใหญ่ FAZ ใกล้ค่าปกติ</p>
-</div>
-</section>
-
-<section id="arch">
-<h2>สถาปัตยกรรมและความปลอดภัย</h2>
-<div class="card">
-<table>
-<tr><th>ชั้น</th><th>เทคโนโลยี</th><th>หน้าที่ / เหตุผลที่เลือก</th></tr>
-<tr><td>Front-end</td><td>Next.js 16 + React 19 + TypeScript</td><td>11 เมนู กราฟ รายงาน · มี API routes ในตัว (เช่น <code>/api/cases/[caseId]/dicom</code>) · TypeScript ช่วยจับ bug ตอนคอมไพล์</td></tr>
-<tr><td>Back-end</td><td>FastAPI (Python) + Uvicorn</td><td>รับภาพ ตรวจสิทธิ์ เรียกโมเดล ส่งผลกลับ · Python เข้ากับ NumPy/ONNX · FastAPI มี validation ด้วย Pydantic และสร้าง API docs อัตโนมัติ</td></tr>
-<tr><td>AI</td><td>PyTorch → ONNX Runtime (CPU)</td><td>เทรนสะดวกใน PyTorch · ONNX เบา รันบน CPU ได้ ไม่ผูกกับ framework</td></tr>
-<tr><td>ประมวลผลภาพ</td><td>Pillow + NumPy</td><td>decode ภาพ, FAZ, สถิติคุณภาพ เขียนเองด้วย NumPy</td></tr>
-<tr><td>Database</td><td>Server memory (+ ไฟล์ manifest ในโหมดเดโม)</td><td>ต้นแบบ ยังไม่ใช้ DB จริง — แผนต่อไปคือ PostgreSQL</td></tr>
-<tr><td>Deploy</td><td>Docker (Hugging Face Space)</td><td>แพ็กทุกอย่างเป็น container</td></tr>
-</table>
-</div>
-<div class="card">
-<b>API หลัก (FastAPI):</b> <code>/health</code> <code>/readiness</code> <code>/auth/login</code> <code>/cases</code> <code>/cases/{id}/uploads/...</code> <code>/cases/{id}/quality-check</code> <code>/cases/{id}/analysis</code> <code>/cases/{id}/review</code> <code>/cases/{id}/report/preview|release|download</code> <code>/audit-log</code> <code>/model-registry/current</code> <code>/octa/analyze</code>
-</div>
-<div class="card good">
-<b>ความปลอดภัย:</b>
-<ul>
-<li><b>ล็อกอินก่อนใช้งาน</b> — ทุก API route ฝั่ง Next.js เรียก <code>requireConsoleSession</code></li>
-<li><b>API key ระหว่าง front ↔ back</b> header <code>x-thermoeye-key</code> เทียบด้วย <code>hmac.compare_digest</code> (constant-time กัน timing attack)</li>
-<li><b>HMAC-SHA256 เซ็นผลวิเคราะห์</b> — เอาผลมาเรียงเป็น JSON (canonical) แล้วเซ็นด้วยกุญแจลับ 32 ไบต์ที่อยู่ฝั่งเซิร์ฟเวอร์เท่านั้น ถ้ามีคนแก้ตัวเลข FAZ/ดัชนี ลายเซ็นจะไม่ตรง → ปฏิเสธ · ตรวจด้วย <code>timingSafeEqual</code></li>
-<li><b>Audit log</b> ทุกเหตุการณ์: ล็อกอิน วิเคราะห์ อนุมัติ ดาวน์โหลด · Export ได้</li>
-<li><b>Provenance</b> ทุกผลมี request_id, SHA-256 ของภาพ input, SHA-256 ของโมเดล, เวอร์ชัน pipeline, เวลา — ตรวจย้อนได้ว่าผลนี้มาจากภาพไหน โมเดลไหน</li>
-<li><b>ไม่เก็บ metadata</b> — preview ที่ส่งกลับเป็นพิกเซลล้วน ไม่มี EXIF/TIFF tag/ชื่อไฟล์ · DICOM ที่ export เป็นแบบ de-identified · response ตั้ง no-store</li>
-<li>ข้อความ error ไม่เปิดเผย path ภายในเซิร์ฟเวอร์ (ส่งเป็นรหัสปลอดภัย เช่น <code>onnx_load_or_inference_failed</code>)</li>
-</ul>
-</div>
-<div class="card">
-<b>การทดสอบซอฟต์แวร์ที่มีในโปรเจกต์:</b> <code>test_octa_pipeline.py</code>, <code>test_backend_key.py</code>, <code>test_runtime_readiness.py</code> (Python) และสคริปต์ npm: <code>typecheck</code>, <code>contract-test</code>, <code>modality-test</code>, <code>persistence-test</code>, <code>ui-safety-test</code>, <code>smoke</code>, <code>a11y</code> · และการทดสอบทำซ้ำ 45/45
-</div>
-</section>
-
+<!-- 2 -->
 <section id="script">
-<h2>บทพูดนำเสนอ (~5–6 นาที)</h2>
-<div class="card script">
-<p class="t">[0:00] เปิด — บอร์ด 2 (ชื่อโครงงาน)</p>
-<p>สวัสดีครับคณะกรรมการทุกท่าน พวกเราจากโรงเรียนนวมินทราชินูทิศ สวนกุหลาบวิทยาลัย ปทุมธานี ขอนำเสนอโครงงานซอฟต์แวร์ชื่อ <b>Eyezheimer</b> ซอฟต์แวร์ AI วิเคราะห์ภาพจอประสาทตา OCTA เพื่อคัดกรองโรคอัลไซเมอร์ระยะเริ่มต้น ภายใต้แนวคิด “คัดกรองวันนี้ เพื่ออนาคตที่ดีกว่า” ครับ</p>
+  <p class="eyebrow">บทพูด</p>
+  <h2>บทพูดของผม ตามสไลด์ (ฝั่งซอฟต์แวร์ ~3–4 นาที)</h2>
+  <p class="mut">ส่วนที่<mark style="background:#fff0c2">ไฮไลต์</mark>คือคำที่ควรเน้นเสียง · ตัวอักษรสีส้มคือสิ่งที่ต้องทำ/ชี้</p>
 
-<p class="t">[0:20] ปัญหา — บอร์ด 1</p>
-<p>ขอเริ่มจากเรื่องของ “ป้าจีน” อายุ 67 ปีครับ ป้าลืมบ่อย ถามซ้ำ หลงทาง แต่คิดว่าแค่เหนื่อย นี่คือภาพที่เกิดขึ้นจริงในสังคมผู้สูงอายุของไทย โดยเฉลี่ยกว่าจะได้รับการวินิจฉัยใช้เวลา <b>2–3 ปี</b> หลังอาการแรก และตอนนั้นเซลล์ประสาทส่วนสำคัญเสียไปแล้ว <b>40–50%</b></p>
-<p>ทำไมถึงช้า? เพราะวิธีตรวจเดิมมีอุปสรรค PET scan ราคา <b>96,000 บาทขึ้นไป</b> การเจาะน้ำไขสันหลังทำให้ผู้ป่วยกว่า <b>40%</b> ปฏิเสธการตรวจ และการอ่านภาพด้วยตายังต่างกันระหว่างผู้เชี่ยวชาญถึง <b>15–20%</b></p>
+  <div class="slide"><header><b>รับไม้ต่อจากเพื่อน</b><span>หลังเพื่อนพูดเรื่อง OCTA และ FAZ จบ</span></header><div class="body">
+    <p class="cue">เดินมาข้างบอร์ด 3 ระหว่างที่เพื่อนพูดประโยคสุดท้าย</p>
+    <p class="say">ขอบคุณครับ ตามที่เพื่อนเล่าไปว่า OCTA ช่วยให้เราเห็นเส้นเลือดฝอยและ FAZ ได้ คำถามต่อไปคือ<mark>จะเปลี่ยนภาพหนึ่งภาพให้กลายเป็นตัวเลขที่แพทย์ใช้ตัดสินใจได้อย่างไร</mark> ส่วนนี้คือหน้าที่ของซอฟต์แวร์ที่ผมพัฒนาครับ</p>
+  </div></div>
 
-<p class="t">[1:10] แนวคิด — ทฤษฎี บอร์ด 2</p>
-<p>คำถามของเราคือ มีทางไหนที่ถูกกว่า ไม่เจ็บ และเร็วกว่า? คำตอบอยู่ที่ดวงตาครับ จอประสาทตาเจริญมาจากเนื้อเยื่อเดียวกับสมอง จึงเปรียบเป็น <b>“หน้าต่างสู่สมอง”</b> งานวิจัยพบว่าผู้ป่วยอัลไซเมอร์มีเส้นเลือดฝอยลดลง และบริเวณกลางจอตาที่ไม่มีเส้นเลือด หรือ <b>FAZ</b> ใหญ่ขึ้น ภาพ OCTA ถ่ายเส้นเลือดเหล่านี้ได้ใน 1–2 นาที ไม่ต้องฉีดสี ราวครั้งละ 200 บาท ถูกกว่า PET scan ประมาณ 99.8%</p>
+  <div class="slide"><header><b>บอร์ด 3 · Software Features</b><span>ภาพรวมเว็บแอป</span></header><div class="body">
+    <p class="cue">ชี้รายชื่อ 11 เมนู แล้วชี้ป้าย "ไม่ต้องติดตั้ง · แพทย์อนุมัติผล · บันทึก log"</p>
+    <p class="say">Eyezheimer เป็น<mark>เว็บแอปพลิเคชันสำหรับแพทย์</mark> เปิดผ่านเบราว์เซอร์ได้ทันที ไม่ต้องติดตั้งโปรแกรม มีทั้งหมด <mark>11 เมนู</mark> ครอบคลุมทั้งงาน ตั้งแต่คิวงาน ผลรายบุคคล สถิติภาพรวม คุณภาพของโมเดล ไปจนถึงบันทึกการใช้งานทุกครั้ง</p>
+    <p class="say">เราออกแบบโดยยึดหลัก 3 ข้อครับ <mark>หนึ่ง ไม่ต้องติดตั้ง</mark> โรงพยาบาลเริ่มใช้ได้เลย <mark>สอง แพทย์เป็นคนอนุมัติผล</mark> AI ช่วยวัดแต่ไม่ตัดสินแทน <mark>สาม บันทึก log ทุกการกระทำ</mark> ตรวจย้อนหลังได้ว่าใครทำอะไร เมื่อไร</p>
+  </div></div>
 
-<p class="t">[1:50] ซอฟต์แวร์ — บอร์ด 3</p>
-<p class="cue">(ชี้ที่หน้าจอ Analysis)</p>
-<p>เราจึงพัฒนาเว็บแอปพลิเคชันสำหรับแพทย์ ใช้ผ่านเบราว์เซอร์ได้ทันที ไม่ต้องติดตั้ง มีทั้งหมด 11 เมนู การใช้งานมี 5 ขั้นครับ ล็อกอิน → อัปโหลดภาพ → AI วิเคราะห์ → แพทย์ตรวจและบันทึกการตัดสินใจ → ออกรายงาน PDF และ DICOM</p>
-<p>หัวใจคือหน้า Analysis แพทย์จะเห็นภาพต้นฉบับ ภาพที่ U-Net แยกเส้นเลือด และขอบเขต FAZ ในหน้าเดียว พร้อมค่า Vessel density, Perfusion, พื้นที่ FAZ เป็นตารางมิลลิเมตร แล้วระบบแปลงเป็น <b>ดัชนี Alzheimer 0–1</b> ว่า FAZ ต่างจากคนปกติกี่ SD และ <b>% ความเสี่ยงเทียบคนวัยเดียวกัน</b> ด้วยหลักของ Bayes</p>
-<p>ที่สำคัญคือ <b>ระบบไม่ตัดสินแทนแพทย์</b> แพทย์ต้องอนุมัติก่อนออกรายงานทุกครั้ง และทุกการกระทำถูกบันทึก log ตรวจย้อนหลังได้</p>
+  <div class="slide"><header><b>บอร์ด 3 · How doctors use it</b><span>5 ขั้นตอน</span></header><div class="body">
+    <p class="cue">ไล่นิ้วตามลูกศร 1 → 5</p>
+    <p class="say">การใช้งานมี 5 ขั้นครับ <mark>ล็อกอิน</mark>ด้วยบัญชีแพทย์ → <mark>อัปโหลดภาพ</mark> รองรับ PNG, JPEG, TIFF, WebP → <mark>AI วิเคราะห์</mark> ทั้งเส้นเลือด FAZ และดัชนี → <mark>แพทย์ตรวจ</mark>และบันทึกการตัดสินใจ → <mark>ออกรายงาน</mark>เป็น PDF และ DICOM ซึ่งเป็นมาตรฐานไฟล์ภาพทางการแพทย์ที่ระบบโรงพยาบาลใช้</p>
+  </div></div>
 
-<p class="t">[3:00] เทคนิค — บอร์ด 4</p>
-<p>ด้านสถาปัตยกรรม หน้าเว็บพัฒนาด้วย Next.js และ React ส่งภาพไปที่ Back-end FastAPI ภาษา Python ซึ่งเรียกโมเดล U-Net ที่เทรนด้วย PyTorch และแปลงเป็น ONNX ให้รันบน CPU ได้</p>
-<p>AI Pipeline มี 6 ขั้น รับภาพไม่เกิน 8 MB → คัดกรองภาพ ถ้าผิดชนิดหรือคุณภาพต่ำกว่า 45 ระบบจะปฏิเสธทันที → U-Net แยกเส้นเลือดทีละพิกเซล → หา FAZ วัดเป็น mm² → คำนวณดัชนี → แสดงผลและออกรายงาน</p>
-<p>ด้านความปลอดภัย ต้องล็อกอินก่อนใช้งาน ผลทุกครั้ง <b>เซ็นด้วย HMAC-SHA256</b> ถ้ามีใครแก้ตัวเลข ระบบจะตรวจพบ</p>
+  <div class="slide"><header><b>บอร์ด 3 · Module 01 Analysis</b><span>หัวใจของระบบ</span></header><div class="body">
+    <p class="cue">ชี้ภาพ 3 ภาพ: ต้นฉบับ → U-Net แยกเส้นเลือด → FAZ แล้วชี้กล่อง 3 กล่องด้านบน</p>
+    <p class="say">หน้า Analysis คือหัวใจของระบบ แพทย์จะเห็น 3 ภาพในหน้าเดียว คือ <mark>ภาพต้นฉบับ ภาพที่ U-Net แยกเส้นเลือด และขอบเขต FAZ</mark> ที่ระบบวาดทับให้ เพื่อให้แพทย์เห็นว่า AI วัดตรงไหน ไม่ใช่แค่ได้ตัวเลขลอยๆ</p>
+    <p class="say">ตัวเลขออกมา 3 ระดับครับ ระดับแรกคือ<mark>ค่าจากภาพ</mark> Vessel density, Perfusion และพื้นที่ FAZ เป็นตารางมิลลิเมตร ระดับที่สองคือ<mark>ดัชนี Alzheimer 0 ถึง 1</mark> ซึ่งบอกว่า FAZ ต่างจากคนปกติกี่ SD แบ่งเป็น Low, Moderate, High ระดับที่สามคือ<mark>% ความเสี่ยงเทียบกับคนวัยเดียวกัน</mark> คำนวณด้วยหลักของ Bayes โดยใช้ความชุกของโรคตามอายุเป็นค่าตั้งต้น</p>
+  </div></div>
 
-<p class="t">[3:50] ผลการทดสอบ</p>
-<p>เราใช้ชุดข้อมูล <b>ROSE-1</b> 117 ภาพจาก 39 คน แบ่งเทรน 30 คน ทดสอบ 9 คน <b>แยกรายคนไม่ซ้ำกัน</b> เพื่อให้วัดผลกับคนที่โมเดลไม่เคยเห็น ผลคือหาเส้นเลือดได้ Accuracy 87.8%, AUC 0.908 หา FAZ ซ้อนทับกับผู้เชี่ยวชาญ Dice 0.87 คลาดเคลื่อนเฉลี่ยเพียง 0.037 mm² สหสัมพันธ์ r = 0.92 และส่งภาพซ้ำ 45 ครั้ง ได้ผลเหมือนเดิมทุกครั้ง</p>
+  <div class="slide"><header><b>บอร์ด 4 · System Architecture</b><span>สถาปัตยกรรม</span></header><div class="body">
+    <p class="cue">ย้ายไปบอร์ด 4 ชี้กล่องจากซ้ายไปขวา</p>
+    <p class="say">ระบบแบ่งเป็น 4 ชั้นครับ <mark>Front-end</mark> เขียนด้วย Next.js และ React เป็นหน้าจอ 11 เมนู กราฟและรายงาน <mark>Back-end API</mark> เขียนด้วย FastAPI ภาษา Python ทำหน้าที่รับภาพ ตรวจสิทธิ์ เรียกโมเดล แล้วส่งผลกลับ <mark>AI Model</mark> คือ U-Net ที่เราเทรนด้วย PyTorch แล้วแปลงเป็น ONNX ให้รันบน CPU ได้ ไม่ต้องใช้การ์ดจอราคาแพง และ <mark>Database</mark> เก็บผลวิเคราะห์และ log การใช้งาน</p>
+    <p class="say">เหตุผลที่แยก Front-end กับ Back-end คนละภาษา เพราะ<mark>งาน AI ใช้ Python ดีที่สุด ส่วนงานหน้าเว็บใช้ React ดีที่สุด</mark> และแต่ละส่วนยังอัปเดตหรือขยายแยกกันได้</p>
+  </div></div>
 
-<p class="t">[4:40] สรุปและความซื่อตรง</p>
-<p>เราขอเน้นว่าตัวเลขเหล่านี้คือความแม่นยำในการ <b>หาเส้นเลือดและ FAZ</b> ไม่ใช่ความแม่นยำในการวินิจฉัยโรค Eyezheimer จึงเป็นเครื่องมือ <b>คัดกรองก่อนส่งต่อแพทย์</b> ร้อยละความเสี่ยงยังต้องทดสอบกับผู้ป่วยจริง</p>
-<p>ก้าวต่อไปของเราคือ ทดสอบกับผู้ป่วยที่รู้ผลวินิจฉัยจริง เพิ่ม heatmap อธิบายเหตุผลของ AI ลบข้อมูลระบุตัวตนอัตโนมัติ เพิ่มข้อมูลคนไทยและเครื่องหลายรุ่น และต่อยอดไปคัดกรอง MCI และพาร์กินสัน</p>
-<p>ขอบคุณครับ พร้อมรับคำถามครับ</p>
-</div>
-<div class="card warn"><b>เคล็ดลับ:</b> ถ้าโดนจำกัดเวลา 3 นาที ให้ตัดส่วน [1:50] เหลือแค่ 5 ขั้นการใช้งาน และส่วน [3:00] เหลือแค่ชื่อเทคโนโลยี · ถ้ามีจอเดโม ให้เปิดหน้า Analysis ค้างไว้ตั้งแต่ต้น</div>
+  <div class="slide"><header><b>บอร์ด 4 · AI Pipeline</b><span>6 ขั้น</span></header><div class="body">
+    <p class="cue">ไล่ 1 → 6 เน้นกล่อง "คุณภาพภาพ ≥ 45%"</p>
+    <p class="say">เมื่อภาพเข้ามา ระบบทำ 6 ขั้นครับ <mark>หนึ่ง รับภาพ</mark>ไม่เกิน 8 MB <mark>สอง คัดกรองภาพ</mark> ข้อนี้สำคัญมาก ถ้าเป็นรูปถ่ายทั่วไป รูปหน้าคน หรือภาพเบลอ คุณภาพต่ำกว่า 45 ระบบจะ<mark>ปฏิเสธก่อนถึงโมเดล</mark> เพราะ AI ที่ได้ภาพขยะก็จะให้ผลขยะ <mark>สาม</mark> U-Net แยกเส้นเลือดทีละพิกเซล <mark>สี่</mark> หา FAZ วัดเป็น mm² <mark>ห้า</mark> คำนวณความหนาแน่นและดัชนี <mark>หก</mark> แสดงผลและออกรายงาน</p>
+    <p class="say">อีกหนึ่งการออกแบบที่เราตั้งใจคือ <mark>ถ้าโมเดลทำงานไม่ได้ ระบบจะบอกตรงๆ ว่าวิเคราะห์ไม่ได้</mark> ไม่แอบใช้วิธีอื่นมาแทน เพราะในงานการแพทย์ ตัวเลขผิดอันตรายกว่าไม่มีตัวเลข</p>
+  </div></div>
+
+  <div class="slide"><header><b>บอร์ด 4 · ความปลอดภัย</b><span>แถบใต้สถาปัตยกรรม</span></header><div class="body">
+    <p class="cue">ชี้แถบข้อความใต้กล่องสถาปัตยกรรม</p>
+    <p class="say">เพราะเป็นข้อมูลผู้ป่วย เราใส่ความปลอดภัย 4 ชั้นครับ <mark>ต้องล็อกอินก่อนใช้งาน</mark> · <mark>บันทึก log ทุกครั้ง</mark> · ผลทุกชิ้น<mark>เซ็นด้วย HMAC-SHA256</mark> ถ้ามีใครแก้ตัวเลขแม้แต่หลักเดียว ลายเซ็นจะไม่ตรง ระบบจะปฏิเสธทันที · และ<mark>ลบข้อมูลระบุตัวตนก่อนอัปโหลด</mark> ภาพที่ส่งกลับเป็นพิกเซลล้วน ไม่มีชื่อไฟล์หรือ metadata</p>
+  </div></div>
+
+  <div class="slide"><header><b>บอร์ด 4 · Dataset &amp; Results</b><span>ผลทดสอบ</span></header><div class="body">
+    <p class="cue">ชี้ตัวเลขทีละกล่อง ช้าๆ</p>
+    <p class="say">เราทดสอบด้วยชุดข้อมูลสาธารณะ <mark>ROSE-1</mark> ที่ผู้เชี่ยวชาญวาดเส้นเลือดไว้ทีละพิกเซล 117 ภาพจาก 39 คน แบ่ง<mark>เทรน 30 คน ทดสอบ 9 คน แยกรายคนไม่ซ้ำกัน</mark> เพื่อให้วัดกับคนที่โมเดลไม่เคยเห็นจริงๆ</p>
+    <p class="say">ผลคือหาเส้นเลือดได้ <mark>Accuracy 87.8%</mark> และ <mark>AUC 0.908</mark> หา FAZ ซ้อนทับกับผู้เชี่ยวชาญ <mark>Dice 0.87</mark> สหสัมพันธ์ <mark>r = 0.92</mark> และในแง่ซอฟต์แวร์ เราส่งภาพเดิมซ้ำ <mark>45 ครั้ง ได้ผลเหมือนเดิมทุกครั้ง</mark> แปลว่าระบบเชื่อถือได้ ภาพเดิมให้ผลเดิมเสมอ</p>
+  </div></div>
+
+  <div class="slide"><header><b>บอร์ด 4 · สรุปและต่อยอด</b><span>ปิดท้าย</span></header><div class="body">
+    <p class="say">ขอเน้นว่าตัวเลขเหล่านี้คือความแม่นในการ<mark>หาเส้นเลือดและ FAZ ไม่ใช่การวินิจฉัยโรค</mark> Eyezheimer จึงเป็นเครื่องมือคัดกรองก่อนส่งต่อแพทย์</p>
+    <p class="say">ก้าวต่อไปของเรา คือทดสอบกับผู้ป่วยที่รู้ผลวินิจฉัยจริง เพิ่ม <mark>heatmap อธิบายเหตุผลของ AI</mark> ลบข้อมูลระบุตัวตนอัตโนมัติ เพิ่มข้อมูลคนไทยจากเครื่องหลายรุ่น และต่อยอดไปคัดกรอง MCI และพาร์กินสัน ขอบคุณครับ พร้อมรับคำถามครับ</p>
+  </div></div>
+
+  <div class="note tip"><b>ถ้าเวลาเหลือน้อย</b>ตัดส่วน Module 01 เหลือแค่ "เห็น 3 ภาพ และได้ตัวเลข 3 ระดับ" และตัดเหตุผลการแยก Front/Back ออก · ถ้ามีจอเดโม เปิดหน้า Analysis ค้างไว้ก่อนเริ่มพูด</div>
 </section>
 
+<!-- 3 -->
+<section id="flow">
+  <p class="eyebrow">ตรรกะของระบบ</p>
+  <h2>ระบบทำงานยังไง ตั้งแต่กดอัปโหลดจนได้รายงาน</h2>
+  <p class="mut">ทุกขั้นอ้างอิงไฟล์จริงในโค้ด ถ้ากรรมการถามว่า "โค้ดส่วนนี้อยู่ไหน" ตอบจากชื่อไฟล์สีเทาได้</p>
+  <ol class="steps">
+    <li><b class="t">แพทย์ล็อกอิน</b>ส่งอีเมล/รหัสผ่านไป <code>POST /api/session</code> ถ้าถูกต้อง เซิร์ฟเวอร์ตั้ง cookie แบบ <b>HttpOnly</b> (JavaScript ในหน้าเว็บอ่านไม่ได้) <b>SameSite=Lax</b> <b>Secure</b> อายุ 8 ชั่วโมง และบันทึก audit log ว่าใครเข้าระบบ<div class="where">app/api/session/route.ts</div></li>
+    <li><b class="t">เลือกไฟล์และกดอัปโหลด</b>เบราว์เซอร์ส่งไฟล์แบบ <code>multipart/form-data</code> ไปที่ <code>POST /api/analyze</code> ซึ่งเป็น API route ฝั่ง Next.js (รันบนเซิร์ฟเวอร์ ไม่ใช่ในเบราว์เซอร์)<div class="where">app/api/analyze/route.ts</div></li>
+    <li><b class="t">Next.js ตรวจด่านแรก</b>ตรวจ session ก่อน (ไม่มี → 401) → ไฟล์ว่าง → 400 → เกิน 8 MB → 413 → อ่าน <b>magic bytes</b> (ไบต์แรกๆ ของไฟล์) ว่าเป็น PNG/JPEG/WebP/TIFF จริงและตรงกับชนิดที่ประกาศ ไม่ตรง → 415 → ชื่อไฟล์มีคำว่า face/selfie/skin/fundus → 422 → คำนวณ <b>SHA-256</b> ของไฟล์เก็บเป็นหลักฐาน<div class="where">features/clinical-console/image-input.ts</div></li>
+    <li><b class="t">ส่งต่อไป Backend Python</b>Next.js เรียก <code>POST {backend}/octa/analyze</code> พร้อม header <code>X-Thermoeye-Key</code> (API key ระหว่างเซิร์ฟเวอร์) ตั้ง timeout 55 วินาที (เพราะ Vercel ให้ฟังก์ชันรันได้สูงสุด 60 วินาที) ถ้าติดต่อไม่ได้ → ตอบว่า "วิเคราะห์ไม่ได้" ไม่สร้างตัวเลขปลอม<div class="where">app/api/analyze/route.ts → backend/app/octa_routes.py</div></li>
+    <li><b class="t">FastAPI ตรวจ key และถอดรหัสภาพ</b>เทียบ key ด้วย <code>hmac.compare_digest</code> → ใช้ Pillow เปิดภาพ ตรวจขนาด 64×64 ถึง 16 ล้านพิกเซล ไม่รับหลายเฟรม แปลงเป็นภาพขาวดำ<div class="where">backend/app/octa_pipeline.py · _load_grayscale()</div></li>
+    <li><b class="t">ด่านกรอง 3 ชั้น</b>modality gate (ชื่อไฟล์/สี) → content gate (สถิติภาพ 6 ตัว จับภาพที่ไม่ใช่ OCTA) → quality gate (คะแนน &lt; 45 → ปฏิเสธ) ภาพที่ไม่ผ่านจะได้สถานะ <code>modality_blocked</code> หรือ <code>quality_blocked</code> พร้อมเหตุผล<div class="where">_modality_gate() · _content_gate() · _quality()</div></li>
+    <li><b class="t">U-Net แยกเส้นเลือด</b>ตรวจว่าไฟล์โมเดลมี SHA-256 ตรงกับ model card → ย่อภาพ 256×256 → ONNX Runtime รันบน CPU → sigmoid → threshold 0.5 → ได้ mask ขาวดำ<div class="where">_trained_vessel_mask()</div></li>
+    <li><b class="t">วัดค่า</b>Vessel density, หา FAZ (flood fill) เป็น mm², Perfusion density, ดัชนี Alzheimer (likelihood ratio) พร้อมวาดเส้นขอบ FAZ เป็น SVG<div class="where">_measure() · _faz_mask() · _alzheimer_faz_index()</div></li>
+    <li><b class="t">ส่ง JSON กลับพร้อมหลักฐาน</b>ผลมี <b>provenance</b>: request_id, SHA-256 ของภาพ, SHA-256 ของโมเดล, เวอร์ชัน pipeline, เวลา, ข้อจำกัดการใช้งาน → Next.js ตรวจรูปแบบข้อมูล (normalize) แล้ว<b>เซ็นด้วย HMAC-SHA256</b><div class="where">features/clinical-console/server/analysis-receipt.ts</div></li>
+    <li><b class="t">แสดงผลในหน้า Analysis</b>React แสดงภาพ 3 ภาพ ตัวเลข และคำนวณ % ความเสี่ยงตามอายุผู้ป่วย (Bayes) ฝั่งหน้าเว็บ<div class="where">features/clinical-console/alzheimer-risk.ts · components/analysis-risk.tsx</div></li>
+    <li><b class="t">แพทย์ตรวจและตัดสินใจ</b>เลือก 1 ใน 4 สถานะ: <i>Pending review · Approved for release · Follow-up required · Rescan requested</i> ระบบตรวจ HMAC ว่าผลไม่ถูกแก้ก่อนบันทึก<div class="where">app/api/cases/[caseId]/review/route.ts · server/store.ts</div></li>
+    <li><b class="t">ออกรายงาน</b>ระบบยอมออกรายงานก็ต่อเมื่อ (1) วิเคราะห์สำเร็จ (2) ใช้โมเดลที่กำหนด (3) มีตัวเลขจริงอย่างน้อยหนึ่งค่า → สร้าง PDF และ DICOM (แบบไม่ระบุตัวตน) → บันทึก audit log ทุกการดาวน์โหลด<div class="where">case-state.ts · canReleaseResearchReport() · server/report-pdf.ts · server/dicom-export.ts</div></li>
+  </ol>
+</section>
+
+<!-- 4 -->
+<section id="front">
+  <p class="eyebrow">Frontend</p>
+  <h2>Frontend: Next.js + React + TypeScript</h2>
+  <p>Next.js ทำ 2 หน้าที่ในโปรเจกต์นี้: <b>(1) หน้าเว็บ</b> 11 เมนูที่แพทย์เห็น และ <b>(2) API routes</b> ที่รันบนเซิร์ฟเวอร์ ทำหน้าที่เป็น "ประตูหน้า" คอยตรวจสิทธิ์ ตรวจไฟล์ เซ็นผล และเก็บ log ก่อนคุยกับ Backend Python</p>
+  <div class="tbl"><table>
+    <tr><th>API route (Next.js)</th><th>ทำอะไร</th></tr>
+    <tr><td><code>/api/session</code></td><td>ล็อกอิน / ออกจากระบบ / ตรวจว่ายังล็อกอินอยู่</td></tr>
+    <tr><td><code>/api/analyze</code></td><td>รับภาพ ตรวจไฟล์ ส่งต่อ backend เซ็น HMAC</td></tr>
+    <tr><td><code>/api/uploads/queue</code></td><td>เพิ่มเคสเข้าคิวงาน</td></tr>
+    <tr><td><code>/api/console-state</code></td><td>ดึงสถานะระบบทั้งหมด (เคส คิว log) ไปแสดงใน Dashboard</td></tr>
+    <tr><td><code>/api/cases/[id]/review</code></td><td>บันทึกการตัดสินใจของแพทย์</td></tr>
+    <tr><td><code>/api/cases/[id]/actions</code></td><td>คำสั่งต่อเคส เช่น เปลี่ยนสถานะ</td></tr>
+    <tr><td><code>/api/cases/[id]/assets/[asset]</code></td><td>ดึงภาพต้นฉบับ / mask ของเคส</td></tr>
+    <tr><td><code>/api/cases/[id]/report/preview</code> · <code>/download</code></td><td>ดูตัวอย่าง / ดาวน์โหลดรายงาน PDF</td></tr>
+    <tr><td><code>/api/cases/[id]/dicom</code></td><td>ส่งออกไฟล์ DICOM แบบไม่ระบุตัวตน</td></tr>
+    <tr><td><code>/api/insights/report/download</code></td><td>รายงานสถิติภาพรวม (Data Insights)</td></tr>
+    <tr><td><code>/api/audit</code></td><td>อ่าน / export ประวัติการใช้งาน</td></tr>
+    <tr><td><code>/api/demo-storage</code></td><td>จัดการที่เก็บข้อมูลโหมดเดโม</td></tr>
+  </table></div>
+  <h4>ตรรกะที่ควรพูดได้</h4>
+  <ul>
+    <li><b>ทุก route เรียก <code>requireConsoleSession()</code> เป็นบรรทัดแรก</b> ไม่มี cookie ที่ถูกต้อง → 401 ทันที</li>
+    <li><b>ตรวจรหัสเคสด้วย regex</b> <code>^[A-Z0-9-]{4,64}$</code> กันการส่งค่าแปลกๆ เข้ามา (เช่น path traversal)</li>
+    <li><b>ตรวจไฟล์ด้วย magic bytes</b> ไม่เชื่อนามสกุล: PNG ขึ้นต้นด้วย <code>89 50 4E 47</code>, JPEG ด้วย <code>FF D8 FF</code>, WebP มีคำว่า <code>RIFF…WEBP</code>, TIFF ด้วย <code>II*</code> หรือ <code>MM*</code></li>
+    <li><b>ตรวจซ้ำทั้ง 2 ฝั่ง (defense in depth)</b> Next.js ตรวจขั้นแรก Python ตรวจละเอียดอีกรอบ ถ้าฝั่งใดพลาด อีกฝั่งยังกันได้</li>
+    <li><b>Response ทุกตัวตั้ง <code>Cache-Control: no-store</code></b> ไม่ให้เบราว์เซอร์/proxy เก็บข้อมูลผู้ป่วยไว้</li>
+    <li><b>PDF และ DICOM สร้างด้วยโค้ดของเราเอง</b> ไม่ใช้ไลบรารีภายนอก DICOM เขียนเป็นแบบ Secondary Capture, Explicit VR Little Endian ตามมาตรฐาน</li>
+    <li><b>เก็บข้อมูลโหมดเดโมแบบ atomic write</b> เขียนลงไฟล์ชั่วคราว → <code>fsync</code> → rename ทับ (มี backup) ถ้าไฟดับกลางคันไฟล์เดิมไม่เสีย</li>
+    <li><b>TypeScript</b> ตรวจชนิดข้อมูลตอนคอมไพล์ และมีสคริปต์ทดสอบ: <code>typecheck</code>, <code>contract-test</code>, <code>modality-test</code>, <code>persistence-test</code>, <code>ui-safety-test</code>, <code>smoke</code>, <code>a11y</code></li>
+  </ul>
+</section>
+
+<!-- 5 -->
+<section id="back">
+  <p class="eyebrow">Backend</p>
+  <h2>Backend: FastAPI (Python)</h2>
+  <p>Backend คือส่วนที่ "คิดเลข" ทั้งหมด รับภาพจาก Next.js แล้วทำ pipeline ทั้งหมดใน Python ด้วย NumPy, Pillow และ ONNX Runtime ไม่ต้องใช้ GPU รันใน Docker container</p>
+  <div class="tbl"><table>
+    <tr><th>Endpoint (FastAPI)</th><th>ทำอะไร</th></tr>
+    <tr><td><code>GET /health</code></td><td>เช็กว่าเซิร์ฟเวอร์ยังทำงาน</td></tr>
+    <tr><td><code>GET /readiness</code></td><td>เช็กว่าโมเดลพร้อม: <i>ready / missing / corrupt / runtime_missing</i></td></tr>
+    <tr><td><code>POST /octa/analyze</code></td><td>วิเคราะห์ภาพ (ต้องมี API key)</td></tr>
+    <tr><td><code>/auth/login</code> · <code>/me</code></td><td>ระบบผู้ใช้ (ต้นแบบ)</td></tr>
+    <tr><td><code>/cases</code> · <code>/cases/{id}</code></td><td>สร้าง / ดูเคส</td></tr>
+    <tr><td><code>/cases/{id}/quality-check</code> · <code>/analysis</code> · <code>/pipeline</code></td><td>รันตรวจคุณภาพ / วิเคราะห์ / ดูสถานะแต่ละขั้น</td></tr>
+    <tr><td><code>/cases/{id}/review</code></td><td>บันทึกผลการตรวจของแพทย์</td></tr>
+    <tr><td><code>/cases/{id}/report/preview · release · download</code></td><td>รายงาน</td></tr>
+    <tr><td><code>/audit-log</code> · <code>/model-registry/current</code></td><td>log และข้อมูลเวอร์ชันโมเดลที่ใช้อยู่</td></tr>
+  </table></div>
+
+  <h3>ข้อจำกัดของ input (ทำไมต้องมี)</h3>
+  <div class="tbl"><table>
+    <tr><th>กฎ</th><th>ค่า</th><th>เหตุผล</th></tr>
+    <tr><td>ขนาดไฟล์</td><td>≤ 8 MB</td><td>กันเซิร์ฟเวอร์ทำงานหนักเกิน / โดนยิงไฟล์ใหญ่</td></tr>
+    <tr><td>จำนวนพิกเซล</td><td>64×64 ถึง 16 ล้าน</td><td>กัน "decompression bomb" (ไฟล์เล็กแต่แตกเป็นภาพยักษ์จนแรมเต็ม)</td></tr>
+    <tr><td>ชนิดไฟล์</td><td>JPEG/PNG/WebP/TIFF และต้องตรงกับที่ประกาศ</td><td>กันการเปลี่ยนนามสกุลหลอก</td></tr>
+    <tr><td>เฟรม</td><td>1 เฟรมเท่านั้น</td><td>TIFF หลายหน้าไม่รู้ว่าควรใช้หน้าไหน</td></tr>
+    <tr><td>สี</td><td>แปลงเป็นขาวดำด้วยสูตร ITU-R 601</td><td>โมเดลเทรนด้วยภาพขาวดำ</td></tr>
+    <tr><td>16 บิต</td><td>หาร 65535 คงที่</td><td>ไม่ยืดคอนทราสต์รายภาพ → ภาพเดิมได้ผลเดิมเสมอ</td></tr>
+  </table></div>
+
+  <h3>ด่านกรองภาพ 3 ชั้น</h3>
+  <div class="tbl"><table>
+    <tr><th>ด่าน</th><th>ตรวจอะไร</th><th>ไม่ผ่านเมื่อ</th></tr>
+    <tr><td>1. Modality</td><td>ชื่อไฟล์และสัดส่วนสี</td><td>ชื่อมี acne/skin/face/portrait/selfie/person/fundus (สีเกิน 12% → แค่เตือน)</td></tr>
+    <tr><td rowspan="6">2. Content<br><span class="mut">(สถิติภาพ)</span></td><td><code>lag1</code> สหสัมพันธ์พิกเซลข้างเคียง</td><td>&lt; 0.25 → เป็น noise ไม่มีเส้นต่อกัน</td></tr>
+    <tr><td><code>detail</code> ค่า Laplacian</td><td>&lt; 0.10 → ภาพเรียบ ไม่มีรายละเอียด</td></tr>
+    <tr><td><code>skew</code> ความเบ้ของความสว่าง</td><td>&lt; 0.20 → ไม่ใช่เส้นสว่างบนพื้นมืด</td></tr>
+    <tr><td><code>extremes</code> พิกเซลดำ/ขาวล้วน</td><td>&gt; 0.60 → เป็นกราฟิก</td></tr>
+    <tr><td><code>flat</code> สัดส่วนช่อง 16×16 ที่เรียบ</td><td>&gt; 0.35 → รูปถ่าย/screenshot</td></tr>
+    <tr><td>สี + flat</td><td>สี &gt; 0.30 และ flat &gt; 0.15 → รูปถ่ายสี</td></tr>
+    <tr><td>3. Quality</td><td>คะแนน = 42 + contrast×0.52 + sharpness×0.22 − artifact×0.35</td><td>&lt; 45 หรือ contrast &lt; 4 หรือมืดเกิน 92%</td></tr>
+  </table></div>
+  <p class="mut">เกณฑ์ของ content gate ตั้งจาก 39 ภาพ ROSE-O รวมกับภาพที่เราทำให้เสียเอง (เบลอ มืด มี noise บีบอัด JPEG ย่อขนาด) แล้วเผื่อระยะไว้กว้างๆ</p>
+
+  <h3>สถานะผลลัพธ์ที่ backend ส่งกลับ</h3>
+  <div class="tbl"><table>
+    <tr><th>analysis_status</th><th>ความหมาย</th></tr>
+    <tr><td><code>measured</code></td><td>วิเคราะห์สำเร็จ มีตัวเลข</td></tr>
+    <tr><td><code>modality_blocked</code></td><td>ไม่ใช่ภาพ OCTA</td></tr>
+    <tr><td><code>quality_blocked</code></td><td>ภาพคุณภาพต่ำ</td></tr>
+    <tr><td><code>unavailable</code></td><td>โมเดลใช้ไม่ได้ ค่าทั้งหมดเป็น null พร้อมรหัสเหตุผล เช่น <code>onnx_artifact_missing</code></td></tr>
+  </table></div>
+  <div class="note ok"><b>หลักการออกแบบ: ไม่มี silent fallback</b>ถ้าโมเดลเสีย ระบบไม่แอบใช้สูตรสำรองแล้วแสดงผลเหมือนเป็นผลจาก AI · มีสูตร heuristic อยู่ในโค้ด แต่ต้องเปิดเองผ่านตัวแปร <code>OCTA_SEGMENTATION_ENGINE</code> และผลจะระบุชื่อ engine ชัดเจน</div>
+</section>
+
+<!-- 6 -->
+<section id="ai">
+  <p class="eyebrow">AI</p>
+  <h2>AI: U-Net แยกเส้นเลือด และอัลกอริทึมหา FAZ</h2>
+  <h3>U-Net คืออะไร</h3>
+  <p>โครงข่ายประสาทเทียมแบบ CNN รูปตัว U ฝั่งซ้าย (encoder) ย่อภาพทีละขั้นเพื่อเข้าใจ "บริบท" ฝั่งขวา (decoder) ขยายกลับเพื่อบอก "ตำแหน่งละเอียด" และมี <b>skip connection</b> ส่งรายละเอียดจากซ้ายข้ามไปขวาโดยตรง เส้นเลือดฝอยเล็กๆ จึงไม่หายระหว่างย่อภาพ ผลคือคำตอบ<b>ทีละพิกเซล</b>ว่าเป็นเส้นเลือดหรือไม่</p>
+  <div class="tbl"><table>
+    <tr><th>หัวข้อ</th><th>ค่าในโปรเจกต์</th></tr>
+    <tr><td>งาน</td><td>Vessel segmentation (แยกเส้นเลือด) เท่านั้น ไม่ได้จำแนกโรค</td></tr>
+    <tr><td>เทรนด้วย</td><td>PyTorch → export เป็น ONNX (ไฟล์ ~7.4 MB)</td></tr>
+    <tr><td>รันด้วย</td><td>ONNX Runtime บน CPU (CPUExecutionProvider)</td></tr>
+    <tr><td>Input</td><td>tensor <code>[1, 1, 256, 256]</code> float32 ค่า 0–1 (ขาวดำ, bilinear resize, หาร 255)</td></tr>
+    <tr><td>Output</td><td>logits → sigmoid → threshold 0.5 → mask → ขยายกลับขนาดเดิมแบบ nearest-neighbour</td></tr>
+    <tr><td>ข้อมูล</td><td>ROSE-1 ชั้น SVC 117 ภาพ / 39 คน · เทรน 30 คน ทดสอบ 9 คน (split ที่ผู้สร้างชุดข้อมูลเผยแพร่)</td></tr>
+    <tr><td>ผลทดสอบ</td><td>Accuracy 87.8% · AUC 0.908 · Dice 0.70 (model card 0.708)</td></tr>
+    <tr><td>กันโมเดลถูกสลับ</td><td>ตรวจ SHA-256 ของไฟล์ ONNX ให้ตรงกับ <code>model_card.json</code> ไม่ตรง → corrupt ไม่ใช้งาน</td></tr>
+    <tr><td>ความเร็ว</td><td>cache session ของโมเดลไว้ (<code>lru_cache</code>) ไม่ต้องโหลดใหม่ทุกภาพ</td></tr>
+  </table></div>
+
+  <h3>หา FAZ (ใช้อัลกอริทึมภาพ ไม่ใช่ AI)</h3>
+  <ol class="steps">
+    <li><b class="t">ย่อเป็นกริด 304×304</b>ภาพครอบคลุม 3×3 มม. → 1 พิกเซล = 3/304 มม.</li>
+    <li><b class="t">Box blur 5×5</b>ลด noise ใช้ integral image (<code>cumsum</code>) ให้เร็ว</li>
+    <li><b class="t">หาพิกเซลมืด</b>มืดกว่า 0.40 × ค่ามัธยฐาน (median) ของภาพ</li>
+    <li><b class="t">หาจุดเริ่ม</b>จุดที่มืดที่สุดในวงกลางรัศมี 15% จากศูนย์กลาง</li>
+    <li><b class="t">Flood fill 4 ทิศ</b>ขยายพื้นที่ไปเฉพาะพิกเซลมืดที่ต่อกัน จนขยายไม่ได้อีก</li>
+    <li><b class="t">คำนวณพื้นที่</b>จำนวนพิกเซล × (3/304)² mm² · ถ้าได้ &lt; 0.02 หรือ &gt; 1.5 mm² ถือว่าหาไม่เจอ ไม่รายงานดัชนี</li>
+    <li><b class="t">วาดเส้นขอบ</b>Moore-neighbour tracing → SVG path วาดทับภาพให้แพทย์ดู</li>
+  </ol>
+  <p>พารามิเตอร์จูนจาก 30 ภาพเทรน วัดกับ 9 ภาพทดสอบ: <b>Dice 0.87 · คลาดเฉลี่ย 0.037 mm² · r = 0.92</b></p>
+
+  <h3>ค่าอื่นที่รายงาน</h3>
+  <ul>
+    <li><b>Vessel density</b> = พิกเซลเส้นเลือด ÷ พิกเซลทั้งหมด × 100</li>
+    <li><b>Perfusion density</b> = % ของภาพที่สว่างกว่า "ระดับ noise" ของ FAZ (ค่าเฉลี่ย FAZ + 3 SD) เพราะใน FAZ ไม่มีเลือด ความสว่างตรงนั้นคือ noise ของเครื่อง ครอบคลุม 94% ของเส้นเลือดที่ผู้เชี่ยวชาญวาด และติด FAZ ไม่ถึง 2%</li>
+    <li>ค่าเหล่านี้<b>เทียบตรงๆ กับตัวเลขของเครื่อง OCTA ไม่ได้</b> เพราะวิธีวัดต่างกัน</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section id="math">
+  <p class="eyebrow">สูตร</p>
+  <h2>ดัชนี Alzheimer และ % ความเสี่ยงตามอายุ</h2>
+  <p><b>ค่าอ้างอิงจากงานวิจัย:</b> FAZ ชั้นผิวของคนปกติ = <b>0.275 ± 0.10 mm²</b> (O'Bryhim et al., JAMA Ophthalmology 2018) · ผู้ป่วยอัลไซเมอร์มี FAZ ใหญ่กว่าเฉลี่ย <b>0.54 SD</b> (meta-analysis, Frontiers in Aging Neuroscience 2022)</p>
+<pre>ขั้น 1  z  = (FAZ − 0.275) / 0.10              จำกัดไว้ −3 ถึง 3
+ขั้น 2  LR = exp(0.54·z − 0.54² / 2)            likelihood ratio: กลุ่ม AD เทียบกลุ่มปกติ
+ขั้น 3  ดัชนี = LR / (1 + LR)                    prior 50/50 → 0.5 = ไม่บอกอะไร
+        Low &lt; 0.35 ≤ Moderate &lt; 0.65 ≤ High
+ขั้น 4  odds_ก่อน = p_อายุ / (1 − p_อายุ)          (Bayes)
+        odds_หลัง = odds_ก่อน × LR
+        risk      = odds_หลัง / (1 + odds_หลัง)</pre>
+  <p><b>ทำไม LR เป็นสูตรนี้:</b> สมมติค่า z ของคนปกติกระจายแบบ Normal(0, 1) และของผู้ป่วยแบบ Normal(0.54, 1) อัตราส่วนความหนาแน่นของ 2 กราฟระฆังที่จุด z คือ exp(0.54z − 0.54²/2)</p>
+  <div class="tbl"><table>
+    <tr><th>อายุ</th><th>ความชุก (prior)</th><th>แหล่ง</th></tr>
+    <tr><td>60–64</td><td>0.23%</td><td>Hendriks et al., JAMA Neurology 2021 × สัดส่วนอัลไซเมอร์</td></tr>
+    <tr><td>65–74</td><td>5.0%</td><td>Alzheimer's Association 2024 Facts &amp; Figures</td></tr>
+    <tr><td>75–84</td><td>13.1%</td><td>〃</td></tr>
+    <tr><td>85+</td><td>33.3%</td><td>〃</td></tr>
+  </table></div>
+  <p class="mut">อายุต่ำกว่า 60 → ไม่คำนวณ % · ไม่เอา vessel density มาบวกเพิ่ม เพราะไม่มีค่าอ้างอิงในหน่วยเดียวกัน และซ้ำซ้อนกับ FAZ</p>
+  <h3>ตัวอย่างคำนวณ (ไว้ตอบสด)</h3>
+  <div class="tbl"><table>
+    <tr><th>FAZ</th><th>z</th><th>LR</th><th>ดัชนี</th><th>ระดับ</th><th>% เสี่ยง อายุ 68</th></tr>
+    <tr><td>0.150 mm²</td><td>−1.25</td><td>0.44</td><td>0.30</td><td>Low</td><td>≈ 2.3%</td></tr>
+    <tr><td>0.290 mm² <span class="mut">(เฉลี่ย 9 ภาพ)</span></td><td>0.15</td><td>0.94</td><td>0.48</td><td>Moderate</td><td>≈ 4.7%</td></tr>
+    <tr><td>0.500 mm²</td><td>2.25</td><td>2.91</td><td>0.74</td><td>High</td><td>≈ 13.3%</td></tr>
+  </table></div>
+  <p><b>จุดตัด:</b> FAZ &lt; ~0.19 mm² → Low · FAZ &gt; ~0.42 mm² → High</p>
+  <p class="mut">บอร์ดเขียน "เสี่ยงเฉลี่ย 5.3% (อายุ 68)" คือค่าเฉลี่ยของ % รายภาพทั้ง 9 ภาพ จึงต่างจาก 4.7% เล็กน้อย</p>
+</section>
+
+<!-- 8 -->
+<section id="sec">
+  <p class="eyebrow">ความปลอดภัย</p>
+  <h2>ความปลอดภัยของระบบ</h2>
+  <div class="tbl"><table>
+    <tr><th>ภัย</th><th>วิธีป้องกันในระบบ</th></tr>
+    <tr><td>คนไม่มีสิทธิ์เข้าใช้</td><td>ทุก API ต้องมี session cookie ที่ถูกต้อง · cookie เป็น HttpOnly, Secure, SameSite=Lax, อายุ 8 ชม.</td></tr>
+    <tr><td>มีคนแก้ตัวเลขผลวิเคราะห์</td><td><b>HMAC-SHA256</b>: เรียงผลเป็น JSON แล้วเซ็นด้วยกุญแจลับ 32 ไบต์ (256 บิต) ที่อยู่บนเซิร์ฟเวอร์เท่านั้น ตรวจด้วย <code>timingSafeEqual</code></td></tr>
+    <tr><td>มีคนเรียก Backend ตรงๆ</td><td>API key ใน header <code>X-Thermoeye-Key</code> เทียบด้วย <code>hmac.compare_digest</code></td></tr>
+    <tr><td>Timing attack</td><td>เปรียบเทียบแบบใช้เวลาคงที่ทั้ง 2 จุดข้างบน</td></tr>
+    <tr><td>ไฟล์อันตราย / ปลอมนามสกุล</td><td>magic bytes, ตรวจ MIME ตรงกับที่ decode ได้, จำกัด 8 MB และ 16 ล้านพิกเซล</td></tr>
+    <tr><td>ข้อมูลผู้ป่วยรั่ว</td><td>ภาพที่ส่งกลับเป็นพิกเซลล้วน ไม่มี EXIF/TIFF tag/ชื่อไฟล์ · DICOM แบบ de-identified · <code>no-store</code> · ผู้ใช้ลบข้อมูลระบุตัวตนก่อนอัปโหลด · มีแท็บ Consent</td></tr>
+    <tr><td>Error เปิดเผยข้อมูลระบบ</td><td>ส่งกลับเป็นรหัสปลอดภัย (เช่น <code>onnx_load_or_inference_failed</code>) ไม่ส่ง path ภายใน</td></tr>
+    <tr><td>โมเดลถูกสลับ / เสีย</td><td>ตรวจ SHA-256 ของไฟล์โมเดลกับ model card ทุกครั้งที่โหลด</td></tr>
+    <tr><td>ตรวจย้อนหลังไม่ได้</td><td>Audit log ทุกเหตุการณ์ + provenance ในผลทุกชิ้น (SHA-256 ของภาพและโมเดล, request_id, เวลา)</td></tr>
+  </table></div>
+  <div class="note tip"><b>HMAC อธิบายง่ายๆ</b>เหมือนตราประทับที่มีแต่เซิร์ฟเวอร์ถือตรายาง ใครแก้เอกสาร (ตัวเลข) ตราประทับจะไม่ตรงทันที ต่างจาก SHA-256 ธรรมดาที่ใครก็คำนวณใหม่ได้ เพราะ HMAC ต้องใช้กุญแจลับ</div>
+</section>
+
+<!-- 9 -->
+<section id="stack">
+  <p class="eyebrow">เทคโนโลยี</p>
+  <h2>เทคโนโลยีที่ใช้ มาจากไหน และเชื่อถือได้แค่ไหน</h2>
+  <p class="mut">ถ้ากรรมการถามว่า "ทำไมเชื่อถือได้" ตอบได้ 3 แบบ: <b>ใครสร้าง/ดูแล</b> · <b>มาตรฐานหรืองานวิจัยรองรับ</b> · <b>ใครใช้ในงานจริง</b></p>
+
+  <h3>ซอฟต์แวร์</h3>
+  <div class="tech">
+    <div class="card"><h4>Next.js</h4><dl><dt>มาจาก</dt><dd>บริษัท Vercel (สหรัฐฯ) เปิดตัวปี 2016 โอเพนซอร์ส</dd><dt>ทำไมเชื่อถือได้</dt><dd>เฟรมเวิร์ก React ที่นิยมที่สุดตัวหนึ่ง ใช้กันกว้างขวางในเว็บระดับองค์กร มีทีมบริษัทดูแลเต็มเวลา</dd><dt>เราใช้ทำ</dt><dd>หน้าเว็บ 11 เมนู + API routes ฝั่งเซิร์ฟเวอร์ (เวอร์ชัน 16)</dd></dl></div>
+    <div class="card"><h4>React</h4><dl><dt>มาจาก</dt><dd>Meta (Facebook) เปิดเป็นโอเพนซอร์สปี 2013</dd><dt>ทำไมเชื่อถือได้</dt><dd>ใช้ใน Facebook, Instagram และเว็บใหญ่จำนวนมาก มีชุมชนใหญ่ที่สุดในฝั่งหน้าเว็บ</dd><dt>เราใช้ทำ</dt><dd>สร้าง component หน้าจอที่ใช้ซ้ำได้ (เวอร์ชัน 19)</dd></dl></div>
+    <div class="card"><h4>TypeScript</h4><dl><dt>มาจาก</dt><dd>Microsoft ปี 2012</dd><dt>ทำไมเชื่อถือได้</dt><dd>เพิ่มระบบชนิดข้อมูลให้ JavaScript จับ bug ได้ตั้งแต่ก่อนรันโปรแกรม</dd><dt>เราใช้ทำ</dt><dd>เขียนฝั่ง Next.js ทั้งหมด + สคริปต์ <code>typecheck</code></dd></dl></div>
+    <div class="card"><h4>Python</h4><dl><dt>มาจาก</dt><dd>Guido van Rossum ปี 1991 ดูแลโดย Python Software Foundation</dd><dt>ทำไมเชื่อถือได้</dt><dd>ภาษาหลักของงาน AI และวิทยาศาสตร์ข้อมูลทั่วโลก</dd><dt>เราใช้ทำ</dt><dd>Backend และ pipeline วิเคราะห์ภาพทั้งหมด</dd></dl></div>
+    <div class="card"><h4>FastAPI + Uvicorn</h4><dl><dt>มาจาก</dt><dd>Sebastián Ramírez ปี 2018 สร้างบน Starlette และ Pydantic · Uvicorn คือเซิร์ฟเวอร์มาตรฐาน ASGI</dd><dt>ทำไมเชื่อถือได้</dt><dd>เร็ว ตรวจรูปแบบข้อมูลอัตโนมัติ สร้างเอกสาร API (OpenAPI) ให้เอง บริษัทเทคโนโลยีใหญ่หลายแห่งใช้งานจริง</dd><dt>เราใช้ทำ</dt><dd>API รับภาพและส่งผล (FastAPI 0.115)</dd></dl></div>
+    <div class="card"><h4>NumPy</h4><dl><dt>มาจาก</dt><dd>Travis Oliphant ปี 2006 ดูแลโดย NumFOCUS</dd><dt>ทำไมเชื่อถือได้</dt><dd>รากฐานของ Python วิทยาศาสตร์ทั้งหมด มีบทความใน Nature (Harris et al., 2020)</dd><dt>เราใช้ทำ</dt><dd>คำนวณทุกอย่างกับภาพ: FAZ, flood fill, สถิติคุณภาพ, ความหนาแน่น</dd></dl></div>
+    <div class="card"><h4>Pillow</h4><dl><dt>มาจาก</dt><dd>สาขาต่อยอด (fork) ของ PIL (Python Imaging Library) เริ่มปี 2010</dd><dt>ทำไมเชื่อถือได้</dt><dd>ไลบรารีจัดการภาพมาตรฐานของ Python มีระบบป้องกัน decompression bomb ในตัว</dd><dt>เราใช้ทำ</dt><dd>เปิดไฟล์ แปลงขาวดำ ย่อ/ขยายภาพ สร้าง preview</dd></dl></div>
+    <div class="card"><h4>PyTorch</h4><dl><dt>มาจาก</dt><dd>Meta AI ปี 2016 ตั้งแต่ปี 2022 อยู่ภายใต้ PyTorch Foundation (Linux Foundation)</dd><dt>ทำไมเชื่อถือได้</dt><dd>เฟรมเวิร์กที่งานวิจัย AI ส่วนใหญ่ทั่วโลกใช้</dd><dt>เราใช้ทำ</dt><dd>เทรนโมเดล U-Net</dd></dl></div>
+    <div class="card"><h4>ONNX + ONNX Runtime</h4><dl><dt>มาจาก</dt><dd>ONNX ริเริ่มโดย Microsoft และ Facebook ปี 2017 ปัจจุบันอยู่ใน LF AI &amp; Data Foundation · ONNX Runtime พัฒนาโดย Microsoft</dd><dt>ทำไมเชื่อถือได้</dt><dd>ฟอร์แมตกลางของโมเดล AI ใช้ได้ข้ามเฟรมเวิร์ก Microsoft ใช้ในผลิตภัณฑ์ของตัวเอง</dd><dt>เราใช้ทำ</dt><dd>รันโมเดลบน CPU ในเซิร์ฟเวอร์ โดยไม่ต้องติดตั้ง PyTorch</dd></dl></div>
+    <div class="card"><h4>Docker / Vercel / Hugging Face</h4><dl><dt>มาจาก</dt><dd>Docker Inc. (2013) · Vercel (ผู้สร้าง Next.js) · Hugging Face (แพลตฟอร์มโมเดล AI)</dd><dt>ทำไมเชื่อถือได้</dt><dd>มาตรฐานอุตสาหกรรมสำหรับ deploy · Vercel deploy อัตโนมัติจาก GitHub</dd><dt>เราใช้ทำ</dt><dd>Docker แพ็ก backend · Vercel โฮสต์หน้าเว็บ · HF Space สำหรับ backend</dd></dl></div>
+  </div>
+
+  <h3>อัลกอริทึม มาตรฐาน และข้อมูล</h3>
+  <div class="tech">
+    <div class="card"><h4>U-Net</h4><dl><dt>มาจาก</dt><dd>Ronneberger, Fischer &amp; Brox, University of Freiburg (เยอรมนี) งานประชุม MICCAI 2015</dd><dt>ทำไมเชื่อถือได้</dt><dd>หนึ่งในบทความที่ถูกอ้างอิงมากที่สุดในวงการ AI ภาพการแพทย์ เป็นต้นแบบของโมเดลแบ่งส่วนภาพการแพทย์จำนวนมาก</dd></dl></div>
+    <div class="card"><h4>ชุดข้อมูล ROSE</h4><dl><dt>มาจาก</dt><dd>Ma et al., "ROSE: A Retinal OCT-Angiography Vessel Segmentation Dataset and New Model", IEEE Transactions on Medical Imaging 2021 · Cixi Institute of Biomedical Engineering, Chinese Academy of Sciences</dd><dt>ทำไมเชื่อถือได้</dt><dd>ตีพิมพ์ในวารสารชั้นนำด้านภาพการแพทย์ label วาดโดยผู้เชี่ยวชาญทีละพิกเซล มี split ทดสอบมาตรฐานให้เทียบกับงานอื่น</dd></dl></div>
+    <div class="card"><h4>HMAC-SHA256</h4><dl><dt>มาจาก</dt><dd>HMAC: มาตรฐาน RFC 2104 (1997) · SHA-256: มาตรฐาน NIST FIPS 180-4 ของสหรัฐฯ</dd><dt>ทำไมเชื่อถือได้</dt><dd>ใช้ใน HTTPS/TLS, JWT, ระบบ API ของธนาคารและบริการคลาวด์ เราใช้โมดูล <code>crypto</code> ของ Node.js และ <code>hmac</code> ของ Python ไม่ได้เขียนการเข้ารหัสเอง</dd></dl></div>
+    <div class="card"><h4>DICOM</h4><dl><dt>มาจาก</dt><dd>NEMA และ American College of Radiology ปี 1993 และเป็นมาตรฐาน ISO 12052</dd><dt>ทำไมเชื่อถือได้</dt><dd>มาตรฐานไฟล์ภาพทางการแพทย์ที่เครื่องมือและระบบ PACS ของโรงพยาบาลทั่วโลกใช้</dd></dl></div>
+    <div class="card"><h4>ITU-R BT.601</h4><dl><dt>มาจาก</dt><dd>International Telecommunication Union</dd><dt>ทำไมเชื่อถือได้</dt><dd>สูตรมาตรฐานแปลงภาพสีเป็นความสว่าง 0.299R + 0.587G + 0.114B</dd></dl></div>
+    <div class="card"><h4>ค่าอ้างอิงทางการแพทย์</h4><dl><dt>มาจาก</dt><dd>O'Bryhim et al. JAMA Ophthalmology 2018 (FAZ ปกติ) · Frontiers in Aging Neuroscience 2022 meta-analysis (0.54 SD) · Alzheimer's Association 2024 (ความชุกตามอายุ) · Hendriks et al. JAMA Neurology 2021</dd><dt>ทำไมเชื่อถือได้</dt><dd>ทุกค่าคงที่ในสูตรมาจากวารสาร peer-reviewed และระบุแหล่งไว้ในโค้ดด้วย</dd></dl></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="numbers">
+  <p class="eyebrow">ตัวเลข</p>
+  <h2>ตัวเลขที่ต้องจำ</h2>
+  <h3>ฝั่งซอฟต์แวร์และโมเดล (ของผม)</h3>
+  <div class="stats">
+    <div class="stat"><b>11 เมนู</b><span>เว็บแอปครบวงจร</span></div>
+    <div class="stat"><b>≤ 8 MB</b><span>PNG / JPEG / TIFF / WebP</span></div>
+    <div class="stat"><b>≥ 45</b><span>คะแนนคุณภาพภาพขั้นต่ำ</span></div>
+    <div class="stat"><b>256×256</b><span>ขนาด input ของ U-Net</span></div>
+    <div class="stat"><b>0.5</b><span>threshold ของ sigmoid</span></div>
+    <div class="stat"><b>117 ภาพ / 39 คน</b><span>ROSE-1 ชั้น SVC</span></div>
+    <div class="stat"><b>30 : 9 คน</b><span>เทรน : ทดสอบ แยกรายคน</span></div>
+    <div class="stat"><b>87.8%</b><span>Accuracy หาเส้นเลือด (ระดับพิกเซล)</span></div>
+    <div class="stat"><b>0.908</b><span>AUC แยกเส้นเลือด/พื้นหลัง</span></div>
+    <div class="stat"><b>0.70</b><span>Dice เส้นเลือด</span></div>
+    <div class="stat"><b>0.87</b><span>FAZ Dice กับผู้เชี่ยวชาญ</span></div>
+    <div class="stat"><b>0.037 mm²</b><span>FAZ คลาดเฉลี่ย</span></div>
+    <div class="stat"><b>r = 0.92</b><span>สหสัมพันธ์พื้นที่ FAZ</span></div>
+    <div class="stat"><b>45/45</b><span>ทำซ้ำได้ผลเดิม (5 × 9 ภาพ)</span></div>
+    <div class="stat"><b>1 / 6 / 2</b><span>FAZ Low / Mod / High จาก 9 ภาพ</span></div>
+    <div class="stat"><b>0.290 mm²</b><span>FAZ เฉลี่ย (ปกติ 0.275)</span></div>
+    <div class="stat"><b>5.3%</b><span>ความเสี่ยงเฉลี่ย ถ้าอายุ 68</span></div>
+    <div class="stat"><b>~7.4 MB</b><span>ขนาดไฟล์โมเดล ONNX</span></div>
+  </div>
+  <h3>ฝั่งปัญหา (เพื่อนพูด แต่ควรจำไว้)</h3>
+  <div class="stats">
+    <div class="stat"><b>2–3 ปี</b><span>กว่าจะได้รับการวินิจฉัย</span></div>
+    <div class="stat"><b>40–50%</b><span>เซลล์ประสาทเสียไปแล้วตอนตรวจพบ</span></div>
+    <div class="stat"><b>฿96,000+</b><span>ค่า PET scan (สูงสุด ฿161,000)</span></div>
+    <div class="stat"><b>40%</b><span>ปฏิเสธการตรวจเพราะกลัวเข็ม</span></div>
+    <div class="stat"><b>85%</b><span>ในประเทศรายได้ต่ำ-กลาง ไม่ได้รับการวินิจฉัย</span></div>
+    <div class="stat"><b>15–20%</b><span>อ่านภาพต่างกันระหว่างผู้เชี่ยวชาญ</span></div>
+    <div class="stat"><b>~฿200</b><span>ต่อการสแกน OCTA</span></div>
+    <div class="stat"><b>~99.8%</b><span>ถูกกว่า PET (1 − 200/96,000)</span></div>
+    <div class="stat"><b>+35–50%*</b><span>พบระยะเริ่มต้นมากขึ้น *คาดการณ์</span></div>
+    <div class="stat"><b>−60–80%*</b><span>ลดเวลาอ่านภาพ *คาดการณ์</span></div>
+  </div>
+</section>
+
+<!-- 11 -->
 <section id="qa">
-<h2>56 คำถามที่กรรมการน่าจะถาม</h2>
-<div id="qa-tools">
-  <input id="q" type="search" placeholder="ค้นหาคำถาม เช่น U-Net, HMAC, Dice ..." aria-label="ค้นหาคำถาม">
-  <button data-c="all" class="on">ทั้งหมด</button>
-  <button data-c="ภาพรวม">ภาพรวม</button>
-  <button data-c="AI">AI/โมเดล</button>
-  <button data-c="ตัวเลข">ตัวเลข/การวัดผล</button>
-  <button data-c="ระบบ">ระบบ/โค้ด</button>
-  <button data-c="ความปลอดภัย">ความปลอดภัย</button>
-  <button data-c="ข้อจำกัด">ข้อจำกัด/ต่อยอด</button>
-  <button id="openall">เปิดทั้งหมด</button>
-</div>
-<div id="qa-list"></div>
+  <p class="eyebrow">ซ้อมตอบ</p>
+  <h2>คำถามที่กรรมการน่าจะถาม</h2>
+  <p class="mut"><span class="pill">ผมตอบ</span> คำถามซอฟต์แวร์ · <span class="pill f">เพื่อนตอบ</span> คำถาม OCTA/การแพทย์ (ผมควรรู้คำตอบไว้ด้วย)</p>
+  <div id="qa-tools">
+    <input id="q" type="search" placeholder="ค้นหา เช่น HMAC, U-Net, Dice, FastAPI" aria-label="ค้นหาคำถาม">
+    <button data-c="all" class="on">ทั้งหมด</button>
+    <button data-c="ระบบ">ระบบ/โค้ด</button>
+    <button data-c="AI">AI/โมเดล</button>
+    <button data-c="ตัวเลข">ตัวเลข</button>
+    <button data-c="ความปลอดภัย">ความปลอดภัย</button>
+    <button data-c="เทคโนโลยี">เทคโนโลยี</button>
+    <button data-c="ข้อจำกัด">ข้อจำกัด</button>
+    <button data-c="OCTA">OCTA (เพื่อน)</button>
+    <button id="openall">เปิดทั้งหมด</button>
+  </div>
+  <div id="qa-list"></div>
 </section>
 
+<!-- 12 -->
 <section id="weak">
-<h2>จุดอ่อนที่อาจโดนจี้ และวิธีตอบ</h2>
-<div class="card danger"><b>“AI ทำนายอัลไซเมอร์ได้แม่นแค่ไหน?”</b><br>ห้ามตอบว่า 87.8% — นั่นคือ accuracy ของการหาเส้นเลือดระดับพิกเซล ตอบว่า: “ส่วนที่เป็น AI ของเราคือการแยกเส้นเลือด ซึ่งวัดได้ AUC 0.908 ส่วนความเสี่ยงอัลไซเมอร์คำนวณจากพื้นที่ FAZ เทียบกับค่าที่ตีพิมพ์ในงานวิจัย เรายังไม่มีข้อมูลผู้ป่วยที่รู้ผลวินิจฉัย จึงยังไม่ได้วัดความแม่นยำการทำนายโรค และนั่นคือขั้นต่อไปของเรา”</div>
-<div class="card danger"><b>“ข้อมูลทดสอบแค่ 9 คน น้อยไปไหม?”</b><br>ยอมรับว่าน้อย อธิบายว่า ROSE-1 เป็นชุดข้อมูลสาธารณะที่มีผู้เชี่ยวชาญวาดเส้นเลือดทีละพิกเซล ซึ่งหาได้ยาก เราใช้ split ที่ผู้สร้างชุดข้อมูลเผยแพร่ และแบ่งรายคนเพื่อไม่ให้ข้อมูลรั่ว ถึง 9 คนแต่ละภาพมีหลายหมื่นพิกเซลที่ใช้วัดผล — แต่ต้องเพิ่มข้อมูลแน่นอน</div>
-<div class="card danger"><b>“Accuracy 87.8% สูงเพราะพื้นหลังเยอะหรือเปล่า?”</b><br>ใช่ มีผลได้ เพราะพิกเซลพื้นหลังมากกว่าเส้นเลือด เราจึงรายงาน AUC และ Dice ด้วย ซึ่งไม่หลอกตาเรื่อง class imbalance — Dice 0.70 คือค่าที่ตรงที่สุดสำหรับความทับซ้อนของเส้นเลือด</div>
-<div class="card danger"><b>“Database เป็น Server memory แปลว่าปิดเครื่องข้อมูลหาย?”</b><br>ใช่ในตัวต้นแบบ (โหมดเดโมมีไฟล์ manifest เก็บถาวรได้) เลือกแบบนี้เพื่อลดความเสี่ยงการเก็บข้อมูลผู้ป่วยในช่วงทดลอง แผนใช้งานจริงคือย้ายไป PostgreSQL + ที่เก็บไฟล์เข้ารหัส</div>
-<div class="card danger"><b>“FAZ ใช้ AI หรือเปล่า?”</b><br>ตอบตรงๆ: FAZ หาด้วยอัลกอริทึมประมวลผลภาพ (blur + threshold + flood fill) ที่จูนจาก 30 ภาพเทรน แล้ววัดกับ 9 ภาพทดสอบ ได้ Dice 0.87 — เลือกวิธีนี้เพราะอธิบายได้ทุกขั้น ทำซ้ำได้ 100% และแม่นพอ</div>
-<div class="card danger"><b>“ตัวเลข +35–50% / −60–80% มาจากไหน?”</b><br>เป็นตัวเลขคาดการณ์ (บอร์ดมีดอกจันกำกับ) ยังไม่ได้วัดในโรงพยาบาลจริง</div>
-<div class="card warn"><b>ความไม่ตรงกันเล็กน้อยที่ควรรู้:</b> Dice เส้นเลือดบนบอร์ด 0.701 แต่ model_card.json เขียน 0.708 (ถ้าถูกถามให้ตอบ “ประมาณ 0.70”) · บอร์ด 4 เขียน “PyTorch ONNX” หมายถึงเทรนด้วย PyTorch แล้ว export เป็น ONNX · ขอบเขตบอร์ด 1 เขียน PNG/JPEG/TIFF แต่ระบบรับ WebP ด้วย</div>
+  <p class="eyebrow">เตรียมรับมือ</p>
+  <h2>จุดอ่อนที่อาจโดนจี้ และวิธีตอบ</h2>
+  <div class="note bad"><b>"AI ทำนายอัลไซเมอร์ได้แม่นแค่ไหน?"</b>ห้ามตอบ 87.8% (นั่นคือการหาเส้นเลือดระดับพิกเซล) ตอบว่า: "ส่วนที่เป็น AI คือการแยกเส้นเลือด ได้ AUC 0.908 ส่วนความเสี่ยงคำนวณจาก FAZ เทียบค่างานวิจัย เรายังไม่มีข้อมูลผู้ป่วยที่รู้ผลวินิจฉัย จึงยังไม่ได้วัดความแม่นในการทำนายโรค ซึ่งเป็นขั้นต่อไปครับ"</div>
+  <div class="note bad"><b>"ทดสอบแค่ 9 คน น้อยไปไหม?"</b>ยอมรับว่าน้อย ROSE เป็นชุดข้อมูลที่ผู้เชี่ยวชาญวาดเส้นเลือดทีละพิกเซล ซึ่งหายาก เราใช้ split มาตรฐานของผู้สร้างชุดข้อมูลและแยกรายคนกันข้อมูลรั่ว แต่ละภาพมีหลายหมื่นพิกเซลให้วัด แต่ต้องเพิ่มข้อมูลแน่นอน</div>
+  <div class="note bad"><b>"Accuracy สูงเพราะพื้นหลังเยอะหรือเปล่า?"</b>ใช่ มีผล พื้นหลังมีมากกว่าเส้นเลือด เราจึงรายงาน AUC และ Dice ด้วย ซึ่งไม่หลอกตาเรื่องข้อมูลไม่สมดุล</div>
+  <div class="note bad"><b>"ระบบล็อกอินปลอดภัยจริงไหม?"</b>ตอบตรงๆ: ตัวต้นแบบใช้บัญชีเดโมและ session token ที่ตั้งผ่านตัวแปร <code>THERMOEYE_SESSION_TOKEN</code> ซึ่ง cookie เป็น HttpOnly/Secure แล้ว แต่ยังไม่ใช่ระบบผู้ใช้เต็มรูปแบบ ถ้าใช้จริงจะเพิ่มบัญชีแยกรายคน รหัสผ่านแบบ hash (เช่น bcrypt/argon2) และเชื่อมระบบยืนยันตัวตนของโรงพยาบาล</div>
+  <div class="note bad"><b>"Database เป็น server memory ปิดเครื่องแล้วข้อมูลหาย?"</b>ใช่ในตัวต้นแบบ (โหมดเดโมเก็บลงไฟล์แบบ atomic ได้) ตั้งใจเพื่อไม่เก็บข้อมูลผู้ป่วยถาวรช่วงทดลอง แผนใช้จริงคือ PostgreSQL + ที่เก็บไฟล์เข้ารหัส</div>
+  <div class="note bad"><b>"FAZ ใช้ AI หรือเปล่า?"</b>ไม่ใช้ ใช้อัลกอริทึมภาพ (blur + threshold + flood fill) จูนจาก 30 ภาพเทรน ได้ Dice 0.87 เลือกเพราะอธิบายได้ทุกขั้น และให้ผลเดิม 100%</div>
+  <div class="note bad"><b>"ตัวเลข +35–50% / −60–80% มาจากไหน?"</b>เป็นตัวเลขคาดการณ์ (บอร์ดมีดอกจัน) ยังไม่ได้วัดจริงในโรงพยาบาล</div>
+  <div class="note warn"><b>ต้องเช็กก่อนขึ้นเวที</b>ถ้าจะเดโมบนเว็บที่ deploy แล้ว ต้องแน่ใจว่า Backend Python ออนไลน์อยู่ (ตั้ง <code>THERMOEYE_LOCAL_INFERENCE_URL</code> ไว้ถูก) ไม่งั้นหน้า Analysis จะขึ้น "AI service could not be reached" · ทางสำรอง: รันเดโมในเครื่องด้วย <code>START-LOCAL-DEMO.bat</code></div>
+  <div class="note warn"><b>ตัวเลขที่ไม่ตรงกันเล็กน้อย</b>Dice เส้นเลือดบนบอร์ด 0.701 แต่ model card 0.708 → ตอบ "ประมาณ 0.70" · บอร์ด 1 เขียน PNG/JPEG/TIFF แต่ระบบรับ WebP ด้วย · ไม่มีข้อมูล epoch/loss ของการเทรนใน repo → ถามเพื่อนที่เทรนให้แน่ใจก่อน</div>
 </section>
 
 </main>
+</div>
+
 <script>
 const QA = [
-// ภาพรวม
-["ภาพรวม","โครงงานนี้แก้ปัญหาอะไร?","การตรวจอัลไซเมอร์ระยะเริ่มต้นแพง เจ็บ และช้า (PET ฿96,000+, เจาะไขสันหลังทำให้ 40% ปฏิเสธ, วินิจฉัยช้า 2–3 ปี) เราทำซอฟต์แวร์ที่ใช้ภาพ OCTA ซึ่งถูก (~฿200) ไม่เจ็บ 1–2 นาที มาคัดกรองความเสี่ยงก่อนส่งต่อแพทย์"],
-["ภาพรวม","ทำไมใช้ดวงตาดูโรคสมองได้?","จอประสาทตาเจริญจากเนื้อเยื่อเดียวกับสมอง เป็นส่วนหนึ่งของระบบประสาทส่วนกลาง งานวิจัยพบว่าผู้ป่วยอัลไซเมอร์มีความหนาแน่นเส้นเลือดฝอยลดลงและ FAZ ใหญ่ขึ้น จึงใช้เป็นตัวบ่งชี้ (biomarker) ที่ตรวจได้โดยไม่เจ็บ","ใช้คำว่า “หน้าต่างสู่สมอง”"],
-["ภาพรวม","OCTA คืออะไร ต่างจากรูปถ่ายจอตาธรรมดา (fundus) อย่างไร?","OCTA = Optical Coherence Tomography Angiography ใช้แสงสแกนหลายครั้งที่ตำแหน่งเดิม จุดที่สัญญาณเปลี่ยนคือเลือดที่กำลังไหล จึงเห็นเส้นเลือดฝอยระดับไมโครโดยไม่ต้องฉีดสี ส่วน fundus เป็นภาพถ่ายสีธรรมดาเห็นแค่เส้นเลือดใหญ่ ระบบเราจึงบล็อกภาพ fundus"],
-["ภาพรวม","FAZ คืออะไร?","Foveal Avascular Zone บริเวณกลางจุดรับภาพชัด (fovea) ที่ไม่มีเส้นเลือดฝอย ในภาพ OCTA จะเห็นเป็นวงมืดตรงกลาง คนปกติชั้นผิวประมาณ 0.275 mm² ผู้ป่วยอัลไซเมอร์มีแนวโน้มใหญ่กว่า"],
-["ภาพรวม","ใครคือผู้ใช้งาน?","แพทย์และบุคลากรทางการแพทย์ ไม่ได้ออกแบบให้ประชาชนใช้เอง เพราะผลต้องให้แพทย์ตีความและอนุมัติ"],
-["ภาพรวม","ระบบนี้วินิจฉัยโรคได้ไหม?","ไม่ได้ ใช้คัดกรองเท่านั้น ผลคือดัชนีความเสี่ยงช่วยให้แพทย์ตัดสินใจว่าควรส่งตรวจต่อหรือไม่ การวินิจฉัยยังต้องใช้การตรวจทางคลินิก","ต้องตอบทันที ไม่ลังเล"],
-["ภาพรวม","จุดเด่นเมื่อเทียบกับวิธีเดิม?","ถูกกว่า PET ~99.8% · ไม่เจ็บ ไม่ฉีดสี · 1–2 นาที · AI วัดค่าให้เป็นตัวเลขเหมือนกันทุกครั้ง ลดปัญหาอ่านต่างกัน 15–20% · ใช้ผ่านเบราว์เซอร์ไม่ต้องติดตั้ง"],
-["ภาพรวม","ตัวเลข 99.8% คิดอย่างไร?","1 − (200 / 96,000) ≈ 0.9979 → ~99.8% เทียบราคาสแกน OCTA ~฿200 กับ PET scan ราคาต่ำสุด ฿96,000"],
-["ภาพรวม","ขั้นตอนดำเนินงานมีอะไรบ้าง?","6 ขั้น: คัดเลือกหัวข้อ → ศึกษาค้นคว้างานวิจัย OCTA/AI → ออกแบบระบบ (UI 11 เมนู, ฐานข้อมูล) → พัฒนาเว็บแอปและโมเดล → ทดสอบวัดความแม่นยำและปรับปรุง → เผยแพร่รายงาน วิดีโอ บอร์ด"],
-// AI
-["AI","ทำไมเลือก U-Net?","U-Net ออกแบบมาเพื่อแบ่งส่วนภาพการแพทย์ (segmentation) โดยเฉพาะ ทำงานได้ดีแม้ข้อมูลน้อย มี skip connection ส่งรายละเอียดจาก encoder ไป decoder ทำให้เส้นเลือดฝอยเล็กๆ ไม่หาย และให้ผลระดับพิกเซลซึ่งตรงกับงานเรา"],
-["AI","อธิบายโครงสร้าง U-Net","ฝั่ง encoder (ขาลง) ใช้ convolution + pooling ย่อภาพ เพิ่มจำนวน feature เพื่อเข้าใจบริบท ฝั่ง decoder (ขาขึ้น) ขยายภาพกลับ และต่อ feature จาก encoder ระดับเดียวกันผ่าน skip connection ชั้นสุดท้ายให้ค่า 1 ช่องต่อพิกเซล คือ logit ว่าเป็นเส้นเลือดหรือไม่"],
-["AI","Input / Output ของโมเดลคืออะไร?","Input: ภาพขาวดำ 256×256 ค่า 0–1 รูปทรง tensor [1,1,256,256] float32 · Output: logit ขนาดเดียวกัน → sigmoid เป็นความน่าจะเป็น → threshold 0.5 เป็น mask → ขยายกลับขนาดภาพเดิมด้วย nearest-neighbour"],
-["AI","ทำไม threshold 0.5?","เป็นจุดตัดมาตรฐานของ sigmoid (ความน่าจะเป็นเกินครึ่ง = เส้นเลือด) และตรงกับตอนเทรน/ประเมิน ถ้าต้องการจูนเพิ่ม สามารถหาค่าที่ให้ Dice สูงสุดบนชุด validation ได้"],
-["AI","ทำไมแปลงเป็น ONNX?","ONNX เป็นฟอร์แมตกลางของโมเดล ไฟล์ ~7.4 MB รันด้วย ONNX Runtime บน CPU ได้ไว ไม่ต้องติดตั้ง PyTorch ขนาดใหญ่หรือมี GPU บนเซิร์ฟเวอร์ ทำให้ deploy ง่ายและถูก"],
-["AI","ทำไมย่อภาพเป็น 256×256?","ให้ตรงกับขนาดที่ใช้เทรน และลดการคำนวณให้รันบน CPU ได้เร็ว ภาพ ROSE ขนาดประมาณ 304×304 การย่อเล็กน้อยไม่ทำให้ข้อมูลเส้นเลือดหายมาก แล้วค่อยขยาย mask กลับขนาดจริงเพื่อวัดผล"],
-["AI","ทำ Preprocessing อะไรบ้าง?","decode ภาพ → แปลงเป็นขาวดำด้วย luma ITU-R 601 (0.299R+0.587G+0.114B) → หาร 255 (หรือ 65535 สำหรับ 16 บิต) → bilinear resize 256×256 — ตั้งใจไม่ทำ contrast stretching รายภาพ เพื่อให้ภาพเดิมได้ผลเดิมทุกครั้ง และตรงกับตอนเทรน"],
-["AI","ROSE-1 คืออะไร ทำไมเลือก?","ชุดข้อมูล OCTA สาธารณะ (Ma et al., IEEE TMI 2021) มีภาพพร้อม label ที่ผู้เชี่ยวชาญวาดเส้นเลือดและ FAZ ทีละพิกเซล เราใช้ชั้น SVC (superficial vascular complex) 117 ภาพจาก 39 คน เลือกเพราะเป็นชุดข้อมูลมาตรฐานที่งานวิจัยอื่นใช้เทียบได้ และหา label ระดับพิกเซลแบบนี้ได้ยาก"],
-["AI","ทำไมแบ่งข้อมูลเป็นรายคน?","ภาพของคนเดียวกันคล้ายกันมาก ถ้าแบ่งรายภาพ ภาพของคนเดียวกันอาจไปอยู่ทั้งชุดเทรนและทดสอบ ทำให้ผลดีเกินจริง (data leakage) เราจึงแบ่ง 30 : 9 คน ไม่ซ้ำกัน","คำถามนี้กรรมการสายซอฟต์แวร์ชอบถาม"],
-["AI","AI ส่วนไหนเรียนรู้ ส่วนไหนเป็นสูตร?","เรียนรู้ (deep learning): U-Net แยกเส้นเลือด · อัลกอริทึมภาพ: หา FAZ (blur + threshold + flood fill) ที่จูนพารามิเตอร์จากข้อมูลเทรน · สูตรสถิติ: ดัชนี Alzheimer และ % ความเสี่ยงจากค่างานวิจัย (Bayes)"],
-["AI","หา FAZ ทำอย่างไร?","ย่อเป็นกริด 304×304 → box blur 5×5 → พิกเซลที่มืดกว่า 0.40 × median ถือว่ามืด → หาจุดมืดที่สุดใกล้ศูนย์กลาง (รัศมี 15%) → flood fill 4 ทิศเฉพาะพิกเซลมืดที่ต่อกัน → นับพิกเซล × (3/304)² = mm²"],
-["AI","ทำไม FAZ ไม่ใช้ U-Net อีกตัว?","อัลกอริทึมนี้ได้ Dice 0.87 กับผู้เชี่ยวชาญแล้ว อธิบายได้ทุกขั้น ไม่ต้องใช้ข้อมูลเพิ่ม และผลเหมือนเดิม 100% การทำ U-Net อีกตัวเป็นแนวทางต่อยอดที่อาจแม่นขึ้น"],
-["AI","ถ้าภาพไม่ใช่ OCTA เช่น รูปหน้าคน ระบบจะทำอย่างไร?","มีด่านกรอง: (1) ชื่อไฟล์มีคำ face/selfie/skin/fundus → บล็อก (2) content gate วัดสถิติภาพ เช่น ความต่อเนื่องของพิกเซล รายละเอียด ความเบ้ (skew) พื้นที่เรียบ ถ้าดูไม่เหมือน OCTA → บล็อก (3) คุณภาพต่ำกว่า 45 → บล็อก โมเดลจึงไม่ได้รับภาพขยะ"],
-// ตัวเลข
-["ตัวเลข","Accuracy 87.8% หมายถึงอะไร?","สัดส่วนพิกเซลที่โมเดลทายถูก (ทั้งเส้นเลือดและพื้นหลัง) บนภาพของ 9 คนที่โมเดลไม่เคยเห็น — เป็นความแม่นการหาเส้นเลือด ไม่ใช่ความแม่นการวินิจฉัยโรค","ห้ามสับสน"],
-["ตัวเลข","AUC 0.908 หมายถึงอะไร?","พื้นที่ใต้กราฟ ROC วัดความสามารถในการแยกพิกเซลเส้นเลือดออกจากพื้นหลังทุก threshold 1.0 = สมบูรณ์ 0.5 = เดาสุ่ม 0.908 ถือว่าดีมาก และไม่ขึ้นกับการเลือก threshold"],
-["ตัวเลข","Dice coefficient คืออะไร คำนวณอย่างไร?","Dice = 2×|A∩B| / (|A|+|B|) วัดความทับซ้อนระหว่าง mask ที่ทายกับที่ผู้เชี่ยวชาญวาด 0–1 เส้นเลือดได้ ~0.70 FAZ ได้ 0.87 — Dice ไม่ถูกหลอกด้วยพื้นหลังเยอะเหมือน accuracy"],
-["ตัวเลข","ทำไม Dice เส้นเลือด (0.70) ต่ำกว่า FAZ (0.87)?","เส้นเลือดฝอยเล็กมาก กว้างแค่ 1–3 พิกเซล คลาดขอบไปพิกเซลเดียวก็ทำให้ Dice ลดเยอะ ส่วน FAZ เป็นก้อนใหญ่ ขอบคลาดนิดหน่อยกระทบน้อย นอกจากนี้ผู้เชี่ยวชาญเองก็วาดเส้นเลือดฝอยไม่ตรงกัน 100%"],
-["ตัวเลข","r = 0.92 คืออะไร?","สัมประสิทธิ์สหสัมพันธ์ Pearson ระหว่างพื้นที่ FAZ ที่ระบบวัดกับที่ผู้เชี่ยวชาญวาด บน 9 ภาพทดสอบ ใกล้ 1 แปลว่าภาพที่ FAZ ใหญ่ ระบบก็วัดได้ใหญ่ตาม เรียงลำดับถูก"],
-["ตัวเลข","คลาดเคลื่อน 0.037 mm² มากหรือน้อย?","เมื่อเทียบกับ FAZ ปกติ 0.275 mm² คือประมาณ 13% และน้อยกว่า SD ของคนปกติ (0.10 mm²) เกือบ 3 เท่า หมายความว่าความคลาดเคลื่อนจากระบบเล็กกว่าความแตกต่างตามธรรมชาติระหว่างคน"],
-["ตัวเลข","45/45 ทำซ้ำได้หมายถึงอะไร สำคัญอย่างไร?","ส่ง 9 ภาพซ้ำคนละ 5 ครั้ง = 45 ครั้ง ได้ผลตัวเลขเหมือนเดิมทุกครั้ง (deterministic) สำคัญทางการแพทย์เพราะแพทย์ต้องเชื่อได้ว่าภาพเดิมให้ผลเดิม ระบบเราไม่มีการสุ่มตอน inference และไม่ปรับคอนทราสต์รายภาพ"],
-["ตัวเลข","ดัชนี Alzheimer 0–1 คำนวณอย่างไร?","z = (FAZ − 0.275)/0.10 → LR = exp(0.54z − 0.54²/2) → ดัชนี = LR/(1+LR) ใช้ prior 50/50 จึงแปลว่า 0.5 = FAZ ไม่ได้บอกอะไร >0.65 = High, <0.35 = Low ค่า 0.275±0.10 จาก O'Bryhim 2018, 0.54 SD จาก meta-analysis ปี 2022"],
-["ตัวเลข","% ความเสี่ยงตามอายุใช้ Bayes อย่างไร?","prior = ความชุกอัลไซเมอร์ตามอายุ (65–74 = 5%, 75–84 = 13.1%, 85+ = 33.3%) แปลงเป็น odds แล้วคูณด้วย LR จาก FAZ ได้ odds หลัง แปลงกลับเป็น % เช่น อายุ 68 FAZ 0.5 mm² → LR 2.91 → ≈13%","เขียนสูตรให้ดูได้"],
-["ตัวเลข","1/6/2 และ 5.3% บนบอร์ดคืออะไร?","ผลจริงจาก 9 ภาพทดสอบ: ระดับ FAZ Low 1 ภาพ, Moderate 6 ภาพ, High 2 ภาพ · ถ้าสมมติทุกคนอายุ 68 ความเสี่ยงเฉลี่ย 5.3% ใกล้ค่าความชุก 5% · FAZ เฉลี่ย 0.290 mm² ใกล้ค่าปกติ 0.275 — สมเหตุสมผลเพราะ ROSE ไม่ได้คัดคนป่วยอัลไซเมอร์"],
-["ตัวเลข","ทำไมไม่รายงาน sensitivity/specificity ของการตรวจโรค?","เพราะชุดข้อมูลที่มีไม่มี label ว่าใครเป็นอัลไซเมอร์ จึงวัดไม่ได้ เราเลือกไม่แสดงตัวเลขที่ไม่ได้วัดจริง และระบุชัดในระบบว่ายังไม่ได้ validate — เป็นขั้นต่อไปที่ต้องทำกับโรงพยาบาล"],
 // ระบบ
-["ระบบ","สถาปัตยกรรมระบบเป็นอย่างไร?","3 ชั้นหลัก: Front-end Next.js/React (11 เมนู) → Back-end FastAPI Python (รับภาพ ตรวจสิทธิ์ เรียกโมเดล) → AI Model U-Net ONNX → เก็บผลและ log ใน server memory · deploy ด้วย Docker"],
-["ระบบ","ทำไมแยก Front-end กับ Back-end เป็นคนละภาษา?","งาน AI/ภาพใช้ Python ดีที่สุด (NumPy, Pillow, ONNX Runtime) ส่วนหน้าเว็บใช้ React/Next.js ดีที่สุด แยกกันทำให้แต่ละส่วน scale และแก้ไขได้อิสระ สื่อสารผ่าน REST API + API key"],
-["ระบบ","ทำไมเลือก FastAPI?","เร็ว (async), ตรวจรูปแบบข้อมูลอัตโนมัติด้วย Pydantic, สร้างเอกสาร API (Swagger) ให้อัตโนมัติ, รับไฟล์ upload ง่าย และเป็น Python ทำงานกับโมเดลได้ตรง"],
-["ระบบ","ทำไมเลือก Next.js?","มี routing และ API routes ในตัว ทำ server-side ได้ ใช้ React ที่มี component ใช้ซ้ำ เขียนด้วย TypeScript จับ bug ตอนคอมไพล์ เหมาะกับ dashboard หลายหน้า"],
-["ระบบ","11 เมนูมีอะไรบ้าง?","Dashboard, Task Manager, Upload Scan, Patients, Analysis, Reports, Data Insights, Model Performance, Data Management, Demo Preview และ Settings"],
-["ระบบ","อธิบาย flow ตั้งแต่กดอัปโหลดจนได้ผล","เบราว์เซอร์ส่งไฟล์ → Next.js ตรวจ session → ส่งต่อ FastAPI พร้อม API key → ตรวจขนาด/ชนิด → modality/content/quality gate → U-Net → FAZ → คำนวณค่า → ส่ง JSON + ภาพ mask กลับ → Next.js เซ็น HMAC → แสดงหน้า Analysis → แพทย์ review/อนุมัติ → ออก PDF/DICOM และบันทึก audit log"],
-["ระบบ","ถ้าโมเดลโหลดไม่ได้จะเกิดอะไรขึ้น?","ระบบตอบสถานะ unavailable, engine none, ค่าเป็น null พร้อมรหัสสาเหตุ — ตั้งใจไม่ใช้วิธีสำรองแบบเงียบๆ เพราะแพทย์อาจเข้าใจผิดว่าเป็นผลจาก AI · มี endpoint /readiness ตรวจสถานะโมเดลล่วงหน้าได้"],
-["ระบบ","DICOM คืออะไร ทำไมต้องรองรับ?","มาตรฐานไฟล์ภาพทางการแพทย์ที่ระบบโรงพยาบาล (PACS) ใช้ รองรับเพื่อให้ผลของเราเข้าระบบโรงพยาบาลได้ ไฟล์ที่ export เป็นแบบลบข้อมูลระบุตัวตน (de-identified)"],
-["ระบบ","ทดสอบซอฟต์แวร์อย่างไรบ้าง?","มี unit test ฝั่ง Python (pipeline, API key, readiness) และสคริปต์ฝั่งเว็บ: typecheck, contract test (รูปแบบผลวิเคราะห์), modality test (บล็อกภาพผิดชนิด), persistence, UI safety, smoke test ทั้ง flow, accessibility และทดสอบทำซ้ำ 45/45"],
-["ระบบ","ใช้เวลาวิเคราะห์ต่อภาพนานเท่าไร รองรับผู้ใช้หลายคนไหม?","โมเดล ONNX ขนาดเล็ก inference บน CPU ใช้เวลาระดับวินาที ภาพ 256×256 · เซสชันโมเดลถูก cache ไว้ไม่ต้องโหลดใหม่ทุกครั้ง · ถ้าผู้ใช้มากขึ้นสามารถเพิ่ม instance ของ back-end ได้เพราะ inference ไม่มี state","ถ้าไม่แน่ใจตัวเลขเวลาที่วัด อย่าเดา บอกว่าระดับวินาที"],
+["ระบบ","อธิบายสถาปัตยกรรมระบบ","4 ชั้น: Front-end Next.js/React (11 เมนู + API routes ฝั่งเซิร์ฟเวอร์) → Back-end FastAPI Python (ตรวจภาพ เรียกโมเดล คำนวณ) → AI Model U-Net ไฟล์ ONNX รันบน CPU → เก็บผลและ log · Next.js คุยกับ Python ผ่าน REST API พร้อม API key","วาดกล่อง 4 กล่องบนบอร์ด 4 ประกอบ"],
+["ระบบ","ทำไมแยก Front-end กับ Back-end คนละภาษา?","งาน AI และประมวลผลภาพใช้ Python ดีที่สุด (NumPy, Pillow, ONNX Runtime) ส่วนหน้าเว็บใช้ React/Next.js ดีที่สุด แยกกันทำให้ deploy และขยายแยกกันได้ เช่น หน้าเว็บอยู่บน Vercel ส่วน AI อยู่บนเซิร์ฟเวอร์ที่มี CPU แรงกว่า"],
+["ระบบ","อธิบาย flow ตั้งแต่อัปโหลดจนได้ผล","เบราว์เซอร์ส่งไฟล์ → /api/analyze ตรวจ session, ขนาด, magic bytes, ชื่อไฟล์, คำนวณ SHA-256 → ส่งให้ FastAPI พร้อม API key → ตรวจ key, decode ภาพ → ด่านกรอง 3 ชั้น → U-Net → หา FAZ → คำนวณค่า → JSON + provenance กลับ → Next.js เซ็น HMAC → หน้า Analysis → แพทย์ review → ออก PDF/DICOM + audit log"],
+["ระบบ","ทำไมเลือก FastAPI ไม่ใช้ Flask หรือ Django?","FastAPI เร็วกว่า Flask (รองรับ async) ตรวจรูปแบบข้อมูลด้วย Pydantic อัตโนมัติ สร้างเอกสาร API (Swagger/OpenAPI) ให้เอง ส่วน Django ใหญ่เกินไปสำหรับ API ที่ทำงานหลักคือรับภาพแล้วคำนวณ"],
+["ระบบ","ทำไมเลือก Next.js ไม่ใช้ React เปล่าๆ?","Next.js มี API routes ทำให้มีโค้ดฝั่งเซิร์ฟเวอร์สำหรับตรวจสิทธิ์ เซ็น HMAC และเก็บกุญแจลับ ซึ่งทำในเบราว์เซอร์ไม่ได้ (กุญแจจะรั่ว) และมี routing ในตัว deploy บน Vercel ได้ง่าย"],
+["ระบบ","API routes ฝั่ง Next.js มีอะไรบ้าง?","session, analyze, uploads/queue, console-state, cases/[id]/review, actions, assets, report/preview, report/download, dicom, insights/report/download, audit, demo-storage — ทุกตัวตรวจ session เป็นบรรทัดแรก"],
+["ระบบ","Magic bytes คืออะไร ทำไมต้องตรวจ?","ไบต์แรกๆ ของไฟล์ที่บอกชนิดไฟล์จริง เช่น PNG ขึ้นต้น 89 50 4E 47, JPEG ขึ้นต้น FF D8 FF ตรวจเพราะนามสกุลเปลี่ยนได้ง่าย คนอาจเอาไฟล์อันตรายมาเปลี่ยนชื่อเป็น .png"],
+["ระบบ","ทำไมตรวจไฟล์ซ้ำทั้งฝั่ง Next.js และ Python?","หลัก defense in depth: ฝั่ง Next.js กันไฟล์ผิดชนิดตั้งแต่ประตูหน้า ประหยัดการส่งข้อมูล ฝั่ง Python ตรวจละเอียดตอน decode จริง ถ้าชั้นใดพลาด อีกชั้นยังกันได้ และ backend ก็ไม่ควรเชื่อผู้เรียกเสมอ"],
+["ระบบ","ถ้าโมเดลเสียหรือ backend ล่มจะเกิดอะไร?","ระบบตอบสถานะ unavailable ค่าเป็น null พร้อมรหัสเหตุผล ไม่สร้างตัวเลขปลอมหรือแอบใช้สูตรสำรอง (no silent fallback) มี endpoint /readiness บอกสถานะโมเดล ready/missing/corrupt/runtime_missing","ประโยคเด็ด: ตัวเลขผิดอันตรายกว่าไม่มีตัวเลข"],
+["ระบบ","ทำไมตั้ง timeout 55 วินาที?","Vercel ให้ฟังก์ชันรันได้สูงสุด 60 วินาที และเซิร์ฟเวอร์ฟรีที่หลับอยู่อาจใช้เวลาตื่นเกือบนาที จึงตั้ง 55 วินาทีให้มีเวลาเหลือส่งข้อความ error กลับอย่างเรียบร้อย"],
+["ระบบ","แพทย์ตัดสินใจได้กี่แบบ?","4 สถานะ: Pending review (รอตรวจ), Approved for release (อนุมัติออกรายงาน), Follow-up required (ต้องติดตาม), Rescan requested (ขอสแกนใหม่)"],
+["ระบบ","ระบบยอมออกรายงานเมื่อไร?","ต้องครบ 3 เงื่อนไข: วิเคราะห์สำเร็จ (measured), ใช้ engine ที่กำหนด (onnx_vessel_unet), และมีตัวเลขจริงอย่างน้อยหนึ่งค่า ถ้าภาพถูกบล็อกหรือโมเดลไม่พร้อม จะออกรายงานไม่ได้ (ฟังก์ชัน canReleaseResearchReport)"],
+["ระบบ","สร้าง PDF และ DICOM ด้วยอะไร?","เขียนเองในโค้ด ไม่ใช้ไลบรารีภายนอก DICOM สร้างตามมาตรฐานแบบ Secondary Capture, Explicit VR Little Endian ส่งออกแบบไม่ระบุตัวตน เพื่อให้ระบบ PACS ของโรงพยาบาลอ่านได้"],
+["ระบบ","เก็บข้อมูลอย่างไร ถ้าไฟดับไฟล์เสียไหม?","ต้นแบบเก็บใน memory ของเซิร์ฟเวอร์ โหมดเดโมเขียนลงไฟล์แบบ atomic: เขียนไฟล์ชั่วคราว → fsync ให้ลงดิสก์จริง → rename ทับ พร้อม backup ถ้าไฟดับกลางคัน ไฟล์เดิมยังสมบูรณ์"],
+["ระบบ","ทดสอบซอฟต์แวร์อย่างไร?","Python: test_octa_pipeline, test_backend_key, test_runtime_readiness · ฝั่งเว็บ: typecheck, contract-test (รูปแบบผล), modality-test (บล็อกภาพผิดชนิด), persistence-test, ui-safety-test, smoke test ทั้ง flow, a11y (การเข้าถึง) · และทดสอบทำซ้ำ 45/45"],
+["ระบบ","รองรับผู้ใช้พร้อมกันหลายคนได้ไหม?","inference ไม่มี state (ภาพเข้า ผลออก) จึงเพิ่มจำนวน backend container ได้ตามโหลด session ของโมเดลถูก cache ไว้ ไม่ต้องโหลดใหม่ทุกภาพ ส่วน database ต้องย้ายไป PostgreSQL ก่อนใช้งานจริงหลายเครื่อง"],
+["ระบบ","Deploy ที่ไหน อย่างไร?","หน้าเว็บ Next.js โฮสต์บน Vercel ซึ่ง deploy อัตโนมัติทุกครั้งที่ push ขึ้น GitHub · Backend Python แพ็กเป็น Docker image สำหรับ Hugging Face Space หรือรันในเครื่องด้วย START-LOCAL-DEMO.bat"],
+// AI
+["AI","ทำไมเลือก U-Net?","ออกแบบมาเพื่อแบ่งส่วนภาพการแพทย์โดยเฉพาะ (Ronneberger 2015) ทำงานได้ดีแม้ข้อมูลน้อย skip connection ทำให้เส้นเลือดฝอยเล็กๆ ไม่หาย และให้ผลระดับพิกเซลซึ่งตรงกับงาน"],
+["AI","อธิบายโครงสร้าง U-Net","Encoder (ขาลง): convolution + pooling ย่อภาพ เพิ่มจำนวน feature เพื่อเข้าใจบริบท · Decoder (ขาขึ้น): ขยายภาพกลับ ต่อ feature จาก encoder ระดับเดียวกันผ่าน skip connection · ชั้นสุดท้าย 1 ช่องต่อพิกเซล = logit ว่าเป็นเส้นเลือดไหม"],
+["AI","Input / Output ของโมเดลคืออะไร?","Input: tensor [1,1,256,256] float32 ค่า 0–1 · Output: logits ขนาดเดียวกัน → sigmoid → threshold 0.5 → mask → ขยายกลับขนาดเดิมด้วย nearest-neighbour (ไม่ทำให้ขอบเบลอ)"],
+["AI","ทำไมแปลงเป็น ONNX?","ไฟล์ ~7.4 MB รันด้วย ONNX Runtime บน CPU ได้เร็ว ไม่ต้องติดตั้ง PyTorch ที่ใหญ่หลาย GB และไม่ต้องมี GPU ทำให้ deploy ถูกและง่าย"],
+["AI","ทำไมย่อเป็น 256×256?","ให้ตรงกับขนาดที่ใช้เทรน และลดการคำนวณให้รันบน CPU ได้เร็ว ภาพ ROSE ประมาณ 304×304 ย่อเล็กน้อยไม่ทำให้เสียรายละเอียดมาก แล้วค่อยขยาย mask กลับขนาดจริงเพื่อวัดผล"],
+["AI","Preprocessing มีอะไรบ้าง?","decode → แปลงขาวดำด้วย ITU-R 601 → หาร 255 (หรือ 65535 สำหรับ 16 บิต) → bilinear resize 256×256 · ตั้งใจไม่ยืดคอนทราสต์รายภาพ เพื่อให้ภาพเดิมได้ผลเดิมเสมอและตรงกับตอนเทรน"],
+["AI","ทำไมแบ่งข้อมูลเป็นรายคน?","ภาพของคนเดียวกันคล้ายกันมาก ถ้าแบ่งรายภาพ ภาพคนเดียวกันอาจอยู่ทั้งชุดเทรนและทดสอบ ผลจะดีเกินจริง (data leakage) จึงแบ่ง 30 : 9 คนไม่ซ้ำกัน","กรรมการสายซอฟต์แวร์ชอบถาม"],
+["AI","ส่วนไหนเป็น AI ส่วนไหนเป็นสูตร?","AI (deep learning): U-Net แยกเส้นเลือด · อัลกอริทึมภาพ: หา FAZ (blur + threshold + flood fill) จูนพารามิเตอร์จากข้อมูล · สูตรสถิติ: ดัชนี Alzheimer และ % ความเสี่ยงจากค่างานวิจัย"],
+["AI","หา FAZ ทำอย่างไร?","กริด 304×304 → box blur 5×5 → พิกเซลมืดกว่า 0.40 × median → หาจุดมืดสุดใกล้ศูนย์กลาง → flood fill 4 ทิศ → นับพิกเซล × (3/304)² = mm² → วาดขอบด้วย Moore-neighbour tracing"],
+["AI","ทำไม FAZ ไม่ใช้ U-Net อีกตัว?","อัลกอริทึมนี้ได้ Dice 0.87 แล้ว อธิบายได้ทุกขั้น ไม่ต้องใช้ข้อมูลเพิ่ม และผลเหมือนเดิม 100% U-Net สำหรับ FAZ เป็นแนวทางต่อยอดที่อาจแม่นขึ้น"],
+["AI","ถ้าอัปโหลดรูปหน้าคนจะเป็นอย่างไร?","ถูกบล็อกก่อนถึงโมเดล: ชื่อไฟล์มีคำต้องห้าม หรือ content gate พบว่ามีพื้นที่เรียบมาก (flat > 0.35) / เป็นภาพสี / ไม่มีเส้นสว่างบนพื้นมืด → สถานะ modality_blocked พร้อมเหตุผล"],
+["AI","ผลลัพธ์ deterministic ไหม?","ใช่ ไม่มีการสุ่มตอน inference ไม่ยืดคอนทราสต์รายภาพ และ FAZ เป็นอัลกอริทึมตายตัว ทดสอบส่งภาพซ้ำ 45 ครั้งได้ผลเดิมทุกครั้ง"],
+// ตัวเลข
+["ตัวเลข","Accuracy 87.8% หมายถึงอะไร?","สัดส่วนพิกเซลที่ทายถูก (ทั้งเส้นเลือดและพื้นหลัง) บนภาพของ 9 คนที่โมเดลไม่เคยเห็น เป็นความแม่นการหาเส้นเลือด ไม่ใช่การวินิจฉัย","ห้ามสับสน"],
+["ตัวเลข","AUC 0.908 หมายถึงอะไร?","พื้นที่ใต้กราฟ ROC วัดว่าแยกพิกเซลเส้นเลือดกับพื้นหลังได้ดีแค่ไหนทุก threshold 1.0 = สมบูรณ์ 0.5 = เดาสุ่ม ไม่ขึ้นกับการเลือก threshold"],
+["ตัวเลข","Dice คืออะไร คำนวณอย่างไร?","Dice = 2×|A∩B| / (|A|+|B|) วัดการซ้อนทับของ mask ที่ทายกับที่ผู้เชี่ยวชาญวาด 0–1 ไม่ถูกหลอกด้วยพื้นหลังเยอะเหมือน accuracy"],
+["ตัวเลข","ทำไม Dice เส้นเลือด (0.70) ต่ำกว่า FAZ (0.87)?","เส้นเลือดฝอยกว้างแค่ 1–3 พิกเซล คลาดขอบพิกเซลเดียว Dice ก็ลดเยอะ ส่วน FAZ เป็นก้อนใหญ่ ขอบคลาดนิดหน่อยกระทบน้อย และผู้เชี่ยวชาญเองก็วาดเส้นเลือดฝอยไม่ตรงกัน 100%"],
+["ตัวเลข","r = 0.92 คืออะไร?","สัมประสิทธิ์สหสัมพันธ์ Pearson ระหว่างพื้นที่ FAZ ที่ระบบวัดกับที่ผู้เชี่ยวชาญวาด ใกล้ 1 แปลว่าภาพที่ FAZ ใหญ่ ระบบก็วัดได้ใหญ่ตาม"],
+["ตัวเลข","คลาด 0.037 mm² มากหรือน้อย?","ประมาณ 13% ของ FAZ ปกติ (0.275) และน้อยกว่า SD ของคนปกติ (0.10) เกือบ 3 เท่า แปลว่าความคลาดจากระบบเล็กกว่าความต่างตามธรรมชาติระหว่างคน"],
+["ตัวเลข","ดัชนี Alzheimer 0–1 คำนวณอย่างไร?","z = (FAZ − 0.275)/0.10 → LR = exp(0.54z − 0.54²/2) → ดัชนี = LR/(1+LR) · >0.65 High, <0.35 Low"],
+["ตัวเลข","% ความเสี่ยงใช้ Bayes อย่างไร?","prior = ความชุกตามอายุ (65–74 = 5%) → แปลงเป็น odds → คูณ LR จาก FAZ → แปลงกลับเป็น % เช่น อายุ 68 FAZ 0.5 mm² → LR 2.91 → ≈13%"],
+["ตัวเลข","1/6/2 และ 5.3% บนบอร์ดคืออะไร?","ผลจริงจาก 9 ภาพทดสอบ: Low 1, Moderate 6, High 2 · ถ้าสมมติอายุ 68 ทุกคน ความเสี่ยงเฉลี่ย 5.3% ใกล้ความชุก 5% สมเหตุสมผลเพราะ ROSE ไม่ได้คัดผู้ป่วยอัลไซเมอร์"],
+["ตัวเลข","ทำไมไม่มี sensitivity/specificity ของการตรวจโรค?","ชุดข้อมูลไม่มี label ว่าใครเป็นอัลไซเมอร์ จึงวัดไม่ได้ เราเลือกไม่แสดงตัวเลขที่ไม่ได้วัดจริง และระบุในระบบชัดว่ายังไม่ validate"],
 // ความปลอดภัย
-["ความปลอดภัย","HMAC-SHA256 คืออะไร ใช้ทำอะไรในระบบ?","HMAC = รหัสยืนยันข้อความโดยใช้กุญแจลับ + hash SHA-256 เราเอาผลวิเคราะห์มาเรียงเป็น JSON แล้วเซ็นด้วยกุญแจที่อยู่ฝั่งเซิร์ฟเวอร์เท่านั้น ถ้าใครแก้ตัวเลข FAZ หรือดัชนี ลายเซ็นจะไม่ตรง ระบบปฏิเสธ — ป้องกันการปลอมผล"],
-["ความปลอดภัย","ทำไมใช้ HMAC แทน SHA-256 ธรรมดา?","SHA-256 ธรรมดาใครก็คำนวณใหม่ได้ ถ้าแก้ข้อมูลแล้วคำนวณ hash ใหม่ก็ตรวจไม่ได้ HMAC ต้องมีกุญแจลับ ซึ่งผู้ใช้ไม่มี จึงปลอมไม่ได้"],
-["ความปลอดภัย","timingSafeEqual / compare_digest ใช้ทำไม?","เปรียบเทียบลายเซ็น/คีย์โดยใช้เวลาเท่ากันเสมอ ถ้าใช้ == ธรรมดา จะหยุดเมื่อเจอตัวแรกที่ต่าง ผู้โจมตีวัดเวลาแล้วเดาทีละตัวได้ (timing attack)"],
-["ความปลอดภัย","ปกป้องข้อมูลผู้ป่วยอย่างไร?","ต้องล็อกอิน · ภาพ preview ส่งกลับเฉพาะพิกเซล ไม่มี EXIF/metadata/ชื่อไฟล์ · DICOM เป็น de-identified · response ตั้ง no-store ไม่ให้ cache · ผู้ใช้ลบข้อมูลระบุตัวตนก่อนอัปโหลด · มีแท็บ consent · audit log ทุกการเข้าถึง · ต่อไปจะลบข้อมูลระบุตัวตนอัตโนมัติ"],
-["ความปลอดภัย","กันไฟล์อันตรายที่อัปโหลดมาอย่างไร?","จำกัด 8 MB และ 16 ล้านพิกเซล (กัน decompression bomb) · ตรวจว่า decode ได้จริงและชนิดตรงกับที่ประกาศ (กันการเปลี่ยนนามสกุล) · ไม่รับหลายเฟรม · error ไม่เปิดเผย path ภายใน"],
-["ความปลอดภัย","Audit log เก็บอะไรและมีประโยชน์อย่างไร?","เก็บทุกเหตุการณ์: ล็อกอิน วิเคราะห์ อนุมัติ ดาวน์โหลด export ว่าใครทำ เมื่อไร กับเคสไหน ใช้ตรวจสอบย้อนหลังและความรับผิดชอบ (accountability) export ได้ด้วยปุ่ม Export audit · ทุกผลมี provenance: SHA-256 ของภาพและโมเดล เวอร์ชัน pipeline"],
+["ความปลอดภัย","HMAC-SHA256 คืออะไร ใช้ทำอะไร?","รหัสยืนยันข้อความที่ใช้กุญแจลับ + SHA-256 เราเรียงผลเป็น JSON แล้วเซ็นด้วยกุญแจ 256 บิตบนเซิร์ฟเวอร์ ถ้ามีคนแก้ตัวเลข ลายเซ็นไม่ตรง ระบบปฏิเสธ"],
+["ความปลอดภัย","ทำไมใช้ HMAC แทน SHA-256 ธรรมดา?","SHA-256 ธรรมดาใครก็คำนวณใหม่ได้หลังแก้ข้อมูล HMAC ต้องมีกุญแจลับซึ่งผู้ใช้ไม่มี จึงปลอมไม่ได้"],
+["ความปลอดภัย","timingSafeEqual / compare_digest ใช้ทำไม?","เปรียบเทียบด้วยเวลาคงที่ ถ้าใช้ == ธรรมดาจะหยุดทันทีที่เจอตัวที่ต่าง ผู้โจมตีวัดเวลาแล้วเดาทีละตัวได้ (timing attack)"],
+["ความปลอดภัย","Cookie ของ session ตั้งค่าอย่างไร?","HttpOnly (JavaScript อ่านไม่ได้ กัน XSS ขโมย) · Secure (ส่งผ่าน HTTPS เท่านั้น) · SameSite=Lax (กัน CSRF ส่วนใหญ่) · อายุ 8 ชั่วโมง"],
+["ความปลอดภัย","ปกป้องข้อมูลผู้ป่วยอย่างไร?","ต้องล็อกอิน · preview เป็นพิกเซลล้วน ไม่มี EXIF/metadata/ชื่อไฟล์ · DICOM de-identified · no-store · ลบข้อมูลระบุตัวตนก่อนอัปโหลด · แท็บ Consent · audit log · error ไม่เปิดเผย path"],
+["ความปลอดภัย","กันไฟล์อันตรายอย่างไร?","จำกัด 8 MB และ 16 ล้านพิกเซล (กัน decompression bomb) · magic bytes + MIME ต้องตรงกับที่ decode ได้ · ไม่รับหลายเฟรม · Pillow มีระบบเตือน decompression bomb ซึ่งเราตั้งให้เป็น error"],
+["ความปลอดภัย","Audit log และ provenance คืออะไร?","Audit log: ใคร ทำอะไร เมื่อไร กับเคสไหน (ล็อกอิน วิเคราะห์ อนุมัติ ดาวน์โหลด) export ได้ · Provenance: ทุกผลมี SHA-256 ของภาพ, SHA-256 ของโมเดล, request_id, เวอร์ชัน pipeline, เวลา ตรวจย้อนได้ว่าผลมาจากภาพไหน โมเดลไหน"],
+// เทคโนโลยี
+["เทคโนโลยี","เทคโนโลยีที่ใช้น่าเชื่อถือแค่ไหน?","ทุกตัวเป็นโอเพนซอร์สที่มีองค์กรใหญ่ดูแล: React (Meta), Next.js (Vercel), TypeScript และ ONNX Runtime (Microsoft), PyTorch (PyTorch Foundation/Linux Foundation), NumPy (NumFOCUS) · การเข้ารหัสใช้มาตรฐาน RFC 2104 และ NIST FIPS 180-4 ผ่านไลบรารีมาตรฐาน ไม่เขียนเอง · U-Net และ ROSE ตีพิมพ์ใน MICCAI และ IEEE TMI"],
+["เทคโนโลยี","U-Net มาจากไหน?","Ronneberger, Fischer และ Brox มหาวิทยาลัย Freiburg เยอรมนี ตีพิมพ์ใน MICCAI 2015 เป็นหนึ่งในงานที่ถูกอ้างอิงมากที่สุดในวงการภาพการแพทย์"],
+["เทคโนโลยี","ROSE dataset มาจากไหน?","Ma et al., IEEE Transactions on Medical Imaging 2021 จาก Cixi Institute of Biomedical Engineering, Chinese Academy of Sciences ภาพ OCTA พร้อม label เส้นเลือดที่ผู้เชี่ยวชาญวาด"],
+["เทคโนโลยี","ทำไมไม่เขียนการเข้ารหัสเอง?","หลักความปลอดภัยพื้นฐาน: อย่าเขียน crypto เอง เพราะพลาดง่ายและตรวจยาก เราใช้ crypto ของ Node.js และ hmac ของ Python ที่ผ่านการตรวจสอบจากคนทั่วโลกแล้ว"],
+["เทคโนโลยี","ใช้ ChatGPT หรือ AI สำเร็จรูปวิเคราะห์ภาพไหม?","ไม่ใช้ การวัดทั้งหมดมาจากโมเดล U-Net ของเราและอัลกอริทึมของเรา รันในเซิร์ฟเวอร์ของเรา ภาพไม่ถูกส่งไปผู้ให้บริการภายนอกโดยค่าเริ่มต้น"],
+["เทคโนโลยี","ส่วนไหนทำเอง ส่วนไหนใช้ของที่มี?","ใช้ของที่มี: ROSE-1, สถาปัตยกรรม U-Net, ไลบรารี (PyTorch, ONNX Runtime, FastAPI, Next.js), ค่าอ้างอิงงานวิจัย · ทำเอง: เทรนโมเดล, ด่านกรองภาพ, อัลกอริทึม FAZ, สูตรดัชนี/Bayes, เว็บ 11 เมนู, ระบบล็อกอิน/HMAC/audit, ตัวสร้าง PDF/DICOM, ชุดทดสอบ"],
 // ข้อจำกัด
-["ข้อจำกัด","ข้อจำกัดหลักของระบบคืออะไร?","(1) ดัชนีอัลไซเมอร์ยังไม่ได้ validate กับผู้ป่วยจริง (2) ข้อมูลทดสอบ 9 คน (3) ROSE ไม่ใช่คนไทยและเครื่องรุ่นเดียว (4) FAZ สมมติภาพ 3×3 มม. (5) ด่านกรองภาพเป็น heuristic ไม่ใช่ตัวจำแนก (6) database ยังอยู่ใน memory"],
-["ข้อจำกัด","ถ้าใช้ภาพจากเครื่อง OCTA ยี่ห้ออื่น/ขนาด 6×6 มม. ผลจะเป็นอย่างไร?","ค่า FAZ mm² จะผิดถ้าไม่ใช่ 3×3 มม. เพราะสูตรสมมติขนาดนี้ และเครื่องต่างยี่ห้อมีความสว่าง/noise ต่างกัน โมเดลอาจแม่นลดลง (domain shift) จึงอยู่ในแผนเพิ่มข้อมูลหลายเครื่องและอ่านขนาดสแกนจาก metadata"],
-["ข้อจำกัด","AI อาจลำเอียงหรือผิดพลาดได้ไหม ป้องกันอย่างไร?","ได้ เช่น ข้อมูลเทรนไม่ใช่คนไทย จึงออกแบบให้แพทย์เป็นผู้ตัดสินสุดท้าย (human-in-the-loop) แสดงภาพ mask และขอบ FAZ ให้แพทย์เห็นว่า AI วัดตรงไหน มีด่านคุณภาพ และแผนเพิ่ม heatmap อธิบายเหตุผล"],
-["ข้อจำกัด","ถ้าจะใช้จริงในโรงพยาบาลต้องทำอะไรเพิ่ม?","ทดสอบกับผู้ป่วยที่รู้ผลวินิจฉัย (AD/MCI/ปกติ) วัด sensitivity/specificity · ขอรับรองด้านจริยธรรมและ อย. เครื่องมือแพทย์ · ย้าย database ไป PostgreSQL เข้ารหัส · ทำตาม PDPA · เชื่อม PACS ผ่าน DICOM"],
-["ข้อจำกัด","จะต่อยอดอย่างไร?","heatmap อธิบาย AI (explainable AI) · ลบข้อมูลระบุตัวตนอัตโนมัติ · เก็บข้อมูลคนไทยหลายเครื่อง · เทรนตัวจำแนก Control/MCI/AD (หน้า Demo Preview คือต้นแบบ UI) · ขยายไปคัดกรอง MCI และพาร์กินสัน"],
-["ข้อจำกัด","หน้า Demo Preview ที่มีตัวเลข Control/MCI/AD เป็นของจริงไหม?","ไม่ใช่ เป็นข้อมูลจำลองทั้งหมด มีป้ายเตือนชัดเจนและปุ่มเปิด/ปิด Demo data ใช้แสดงหน้าตาระบบในอนาคตเมื่อมีโมเดลจำแนกโรคที่ผ่านการทดสอบ","ตอบชัดๆ ป้องกันกรรมการเข้าใจผิด"],
-["ข้อจำกัด","ส่วนไหนที่พวกคุณทำเอง ส่วนไหนใช้ของที่มีอยู่?","ใช้ของที่มี: ชุดข้อมูล ROSE-1, สถาปัตยกรรม U-Net, ไลบรารี (PyTorch, ONNX Runtime, FastAPI, Next.js), ค่าอ้างอิงจากงานวิจัย · ทำเอง: เทรนโมเดล, pipeline ด่านกรองภาพ, อัลกอริทึม FAZ และจูนพารามิเตอร์, สูตรดัชนี/Bayes, เว็บแอป 11 เมนู, ระบบล็อกอิน/HMAC/audit log, รายงาน PDF/DICOM, ชุดทดสอบ"],
+["ข้อจำกัด","ข้อจำกัดหลักของระบบ?","ดัชนียังไม่ validate กับผู้ป่วยจริง · ทดสอบ 9 คน · ROSE ไม่ใช่คนไทยและมาจากเครื่องรุ่นเดียว · FAZ สมมติภาพ 3×3 มม. · ด่านกรองเป็น heuristic · database ยังเป็น memory · ระบบล็อกอินเป็นต้นแบบ"],
+["ข้อจำกัด","ถ้าใช้ภาพจากเครื่องยี่ห้ออื่นหรือ 6×6 มม.?","FAZ mm² จะผิดถ้าไม่ใช่ 3×3 มม. และเครื่องต่างยี่ห้อมีความสว่าง/noise ต่างกัน โมเดลอาจแม่นลดลง (domain shift) แผนคือเพิ่มข้อมูลหลายเครื่อง และอ่านขนาดสแกนจาก metadata"],
+["ข้อจำกัด","AI ลำเอียงหรือผิดได้ไหม ป้องกันอย่างไร?","ได้ จึงให้แพทย์ตัดสินสุดท้าย (human-in-the-loop) แสดง mask และขอบ FAZ ให้เห็นว่าวัดตรงไหน มีด่านคุณภาพ และแผนเพิ่ม heatmap อธิบายเหตุผล"],
+["ข้อจำกัด","ถ้าจะใช้จริงในโรงพยาบาลต้องทำอะไรเพิ่ม?","ทดสอบกับผู้ป่วยที่รู้ผล (AD/MCI/ปกติ) วัด sensitivity/specificity · ขอจริยธรรมและรับรองเครื่องมือแพทย์ · PostgreSQL เข้ารหัส · บัญชีผู้ใช้จริง + รหัสผ่าน hash · ทำตาม PDPA · เชื่อม PACS"],
+["ข้อจำกัด","หน้า Demo Preview เป็นข้อมูลจริงไหม?","ไม่ใช่ ข้อมูลจำลองทั้งหมด มีป้ายเตือนและปุ่มเปิด/ปิด Demo data ใช้แสดงหน้าตาระบบเมื่อมีโมเดลจำแนกโรคในอนาคต","ตอบให้ชัด"],
+["ข้อจำกัด","จะต่อยอดอย่างไร?","heatmap อธิบาย AI · ลบข้อมูลระบุตัวตนอัตโนมัติ · ข้อมูลคนไทยหลายเครื่อง · เทรนตัวจำแนก Control/MCI/AD · ขยายไป MCI และพาร์กินสัน"],
+// OCTA (เพื่อน)
+["OCTA","ทำไมใช้ดวงตาดูโรคสมองได้?","จอประสาทตาเจริญจากเนื้อเยื่อเดียวกับสมอง เป็นส่วนของระบบประสาทส่วนกลาง ผู้ป่วยอัลไซเมอร์มีเส้นเลือดฝอยลดลงและ FAZ ใหญ่ขึ้น"],
+["OCTA","OCTA ต่างจากรูปถ่ายจอตา (fundus) อย่างไร?","OCTA สแกนด้วยแสงหลายครั้งที่ตำแหน่งเดิม จุดที่สัญญาณเปลี่ยนคือเลือดที่ไหล จึงเห็นเส้นเลือดฝอยโดยไม่ฉีดสี ส่วน fundus เป็นภาพถ่ายสีเห็นแค่เส้นเลือดใหญ่ ระบบจึงบล็อก fundus"],
+["OCTA","FAZ คืออะไร?","Foveal Avascular Zone บริเวณกลางจุดรับภาพชัดที่ไม่มีเส้นเลือดฝอย เห็นเป็นวงมืดกลางภาพ OCTA คนปกติชั้นผิวประมาณ 0.275 mm²"],
+["OCTA","ระบบนี้วินิจฉัยโรคได้ไหม?","ไม่ได้ ใช้คัดกรองเท่านั้น ช่วยให้แพทย์ตัดสินว่าควรส่งตรวจต่อหรือไม่","ตอบทันที ไม่ลังเล"],
+["OCTA","99.8% ถูกกว่า PET คิดอย่างไร?","1 − (200 / 96,000) ≈ 99.8% เทียบ OCTA ~฿200 กับ PET ราคาต่ำสุด ฿96,000"],
 ];
 const list = document.getElementById("qa-list");
-list.innerHTML = QA.map(([c,q,a,tip],i)=>`<details data-c="${c}"><summary><span class="n">${i+1}.</span><span class="tag">${c}</span>${q}</summary><div class="a">${a}${tip?`<div class="tip">💡 ${tip}</div>`:""}</div></details>`).join("");
-console.assert(QA.length >= 50, "ต้องมีอย่างน้อย 50 คำถาม, ตอนนี้มี " + QA.length);
+list.innerHTML = QA.map(([c,q,a,tip],i)=>`<details data-c="${c}"><summary><span class="n">${String(i+1).padStart(2,"0")}</span><span>${c==="OCTA"?'<span class="pill f">เพื่อนตอบ</span>':'<span class="pill">'+c+'</span>'}${q}</span></summary><div class="a">${a}${tip?`<div class="hint">💡 ${tip}</div>`:""}</div></details>`).join("");
+console.assert(QA.length >= 50, "ต้องมีอย่างน้อย 50 คำถาม: " + QA.length);
+document.querySelector("#qa h2").textContent = `${QA.length} คำถามที่กรรมการน่าจะถาม`;
 let cat = "all";
 const input = document.getElementById("q");
 function filter(){
@@ -452,6 +603,10 @@ document.getElementById("openall").addEventListener("click",e=>{
   list.querySelectorAll("details").forEach(d=>d.open=open);
   e.target.textContent = open ? "ปิดทั้งหมด" : "เปิดทั้งหมด";
 });
+// highlight current section in sidebar
+const links=[...document.querySelectorAll("aside a")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-30% 0px -60% 0px"});
+document.querySelectorAll("main section").forEach(s=>io.observe(s));
 </script>
 </body>
 </html>
